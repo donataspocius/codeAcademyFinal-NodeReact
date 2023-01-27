@@ -12,19 +12,19 @@ dotenv.config();
 const app: Application = express();
 const PORT = process.env.PORT || 5000;
 
-// Middlewares
+// MIDDLEWARES
 app.use(express.json()); // use JSON
 app.use(cors());
 
-// Endpoints
+// ENDPOINTS
 app.get("/", (req: Request, res: Response): void => {
   res.send("HELLO from SERVER on PORT 5000");
 });
 
 // create new user in database (MongoDB: users)
-app.post("/api/users/signup", createUser);
+app.post("/auth/signup", createUser);
 
-// Connection to MongoDB cities-api-db, creating server
+// CONNECTION TO MongoDB cities-api-db, CREATE SERVER
 mongoose
   .connect(MONGODB_URI)
   .then(() => {

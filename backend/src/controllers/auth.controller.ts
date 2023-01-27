@@ -9,8 +9,8 @@ export const createUser = async (
   // getting user data
   const newUserData = req.body;
   try {
-    // checking if user already exists
-    const userExist = await User.findOne(newUserData);
+    // checking if user by that email already exists
+    const userExist = await User.findOne({ email: newUserData.email });
 
     if (!userExist) {
       const newUser = new User(newUserData);

@@ -12,6 +12,11 @@ const userSchema = new mongoose.Schema({
     trim: true,
     required: [true, "Please enter your email"],
   },
+  password: {
+    type: String,
+    required: [true, "Please provide a password"],
+    // select: false,
+  },
 });
 
 const User = mongoose.model("user", userSchema);
