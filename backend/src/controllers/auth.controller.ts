@@ -1,8 +1,10 @@
-import express, { Application, Request, Response } from "express";
+import { Request, Response } from "express";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import User from "../models/user.model";
+import { ACCESS_TOKEN_SECRET } from "./envConfig";
 
-// create new user function
+// create new user
 export const createUser = async (
   req: Request,
   res: Response
@@ -20,12 +22,13 @@ export const createUser = async (
         password: hashedPassword,
       };
       const newUser = new User(preparedUserData);
-      const createdNewUser = await newUser.save();
+
+      const newUserSaved = await newUser.save();
 
       res.status(201).json({
         status: "success",
         message: "User created!",
-        user: { ...preparedUserData, password: "hidden" },
+        user: newUserSaved,
       });
     } else {
       res.status(400).json({
@@ -36,6 +39,35 @@ export const createUser = async (
   } catch (error) {
     res
       .status(500)
-      .send({ status: "fail", message: `Error creating user: ${error}` });
+      .json({ status: "fail", message: `Error creating user: ${error}` });
+  }
+};
+
+// login user
+export const loginUser = async (req: Request, res: Response): Promise<void> => {
+  // CHECK IF USER EXISTS
+  const user = await User.findOne({ email: req.body.email });
+
+  // AUTHENTICATE USER
+  if (user) {
+    try {
+      const passwordCorrect = await bcrypt.compare(
+        req.body.password,
+        user.password
+      );
+
+      if (passwordCorrect) {
+        const accessToken = jwt.sign(user.username, ACCESS_TOKEN_SECRET);
+        res.status(200).json({ status: "success", accessToken });
+      } else {
+        res.status(400).json({ status: "fail", message: "wrong credentials" });
+      }
+    } catch (error) {
+      res
+        .status(500)
+        .json({ status: "fail", message: `Error signing in user: ${error}` });
+    }
+  } else {
+    res.status(404).json({ status: "fail", message: "user not found!" });
   }
 };

@@ -1,4 +1,4 @@
-// this is fix for loading environement variables when running the server with typescript and node.js
+// this is fix for TS -> loading environement variables when running the server with typescript and node.js
 
 import { config } from "dotenv";
 

@@ -2,10 +2,9 @@ import express, { Application, Request, Response } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import { MONGODB_URI } from "./envConfig"; // importing string URI set for TS
-import jwt from "jsonwebtoken";
-
-import { createUser } from "./controllers/auth.controller";
+import { MONGODB_URI } from "./models/envConfig"; // importing string URI set for TS
+import { authenticateToken } from "./controllers/auth.middlewares";
+import { createUser, loginUser } from "./controllers/auth.controller";
 
 dotenv.config();
 
@@ -23,6 +22,17 @@ app.get("/", (req: Request, res: Response): void => {
 
 // create new user in database (MongoDB: users)
 app.post("/auth/signup", createUser);
+
+// login user
+app.post("/auth/login", loginUser);
+
+// test auth
+app.get("/test", authenticateToken, (req: Request, res: Response) => {
+  res.json({ message: "you're authenticated" });
+});
+
+// GET all cities --> HOME page initial load
+// app.get("/content/all-cities", getAllCities);
 
 // CONNECTION TO MongoDB cities-api-db, CREATE SERVER
 mongoose

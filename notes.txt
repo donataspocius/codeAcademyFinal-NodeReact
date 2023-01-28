@@ -15,7 +15,7 @@ PROJECT PLAN
     -- GET by ID        --> when user clicks on city card
     -- POST             --> auth/login / twsToken
     -- POST             --> auth/signup
-    -- POST             --> auth/logout
+    -- POST             --> auth/logout ???
     
 
     bcript
