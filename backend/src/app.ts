@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { MONGODB_URI } from "./models/envConfig"; // importing string URI set for TS
 import { authenticateToken } from "./controllers/auth.middlewares";
 import { createUser, loginUser } from "./controllers/auth.controller";
+import { getAllCities } from "./controllers/content.controller";
 
 dotenv.config();
 
@@ -32,7 +33,7 @@ app.get("/test", authenticateToken, (req: Request, res: Response) => {
 });
 
 // GET all cities --> HOME page initial load
-// app.get("/content/all-cities", getAllCities);
+app.get("/content/all-cities", getAllCities);
 
 // CONNECTION TO MongoDB cities-api-db, CREATE SERVER
 mongoose
