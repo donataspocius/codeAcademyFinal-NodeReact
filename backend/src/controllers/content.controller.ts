@@ -1,13 +1,14 @@
 import { API_SECRET } from "../constants";
 import { Request, Response } from "express";
 
-export const getAllCities = async (
+export const getCountryData = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
+    const country = req.params.country;
     let response = await fetch(
-      `https://api.roadgoat.com/api/v2/destinations/united-states`,
+      `https://api.roadgoat.com/api/v2/destinations/${country}`,
       {
         method: "GET",
         headers: {

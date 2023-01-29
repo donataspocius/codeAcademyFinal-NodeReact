@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import { MONGODB_URI } from "./models/envConfig"; // importing string URI set for TS
-import { authenticateToken } from "./controllers/auth.middlewares";
+import { authenticateToken } from "./middlewares/auth.middlewares";
 import { createUser, loginUser } from "./controllers/auth.controller";
-import { getAllCities } from "./controllers/content.controller";
+import { getCountryData } from "./controllers/content.controller";
 
 dotenv.config();
 
@@ -17,23 +17,17 @@ app.use(express.json()); // use JSON
 app.use(cors());
 
 // ENDPOINTS
-app.get("/", (req: Request, res: Response): void => {
-  res.send("HELLO from SERVER on PORT 5000");
-});
 
+// --- LOGIN ENDPOINTS
 // create new user in database (MongoDB: users)
 app.post("/auth/signup", createUser);
 
 // login user
 app.post("/auth/login", loginUser);
 
-// test auth
-app.get("/test", authenticateToken, (req: Request, res: Response) => {
-  res.json({ message: "you're authenticated" });
-});
-
+// --- CONTENT ENDPOINTS
 // GET all cities --> HOME page initial load
-app.get("/content/all-cities", getAllCities);
+app.get("/content/:country", getCountryData);
 
 // CONNECTION TO MongoDB cities-api-db, CREATE SERVER
 mongoose

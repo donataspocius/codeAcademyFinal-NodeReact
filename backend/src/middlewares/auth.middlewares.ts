@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { ACCESS_TOKEN_SECRET } from "./envConfig";
+import { ACCESS_TOKEN_SECRET } from "../controllers/envConfig";
 
 export function authenticateToken(
   req: Request,
