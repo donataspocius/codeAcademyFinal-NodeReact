@@ -5,7 +5,7 @@ const path = require("path");
 const cssLoaders = [MiniCssExtractPlugin.loader, "css-loader"];
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.ts",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "build"),
@@ -26,6 +26,11 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)$/i, // (1)
         use: "url-loader",
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: "ts-loader",
       },
     ],
   },

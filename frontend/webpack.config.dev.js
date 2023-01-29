@@ -4,7 +4,7 @@ const path = require("path");
 const cssLoaders = ["style-loader", "css-loader"];
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.ts",
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "./src/index.html"),
@@ -20,7 +20,15 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
         type: "asset/resource",
       },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: "ts-loader",
+      },
     ],
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
   },
   mode: "development",
   devServer: {
