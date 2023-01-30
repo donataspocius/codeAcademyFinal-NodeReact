@@ -1,0 +1,21 @@
+.button {
+    /* background-color: var(--red); */
+    background-color: var(--blue);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.button--small {
+    font-size: 15px;
+    height: 30px;
+    padding: 9px 25px 6px 25px;
+    
+}
+
+.button--big {
+    font-size: 19px;
+    height: 40px;
+    padding: 11px 34px 10px 34px;
+  }

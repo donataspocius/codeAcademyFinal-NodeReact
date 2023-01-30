@@ -1,10 +1,13 @@
 .header {
-    background-color: cadetblue;
+    display: flex;
+    justify-content: space-between;
     padding: 15px 20px;
-}
-
-.logo {
-    height: 64px;
-    /* width: 16px; */
+    color: white;
+    align-items: center;
   }
+  
+  .logo {
+    height: 64px;
+  }
+  
   

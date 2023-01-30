@@ -1,5 +1,5 @@
 import React from "react";
-import creditCards from "../../imgs/creditCards.png";
+import creditCards from "../../imgs/creditCards.svg";
 import styles from "./Footer.module.css";
 
 const Footer = () => {
