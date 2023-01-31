@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 
-import Homepage from "./pages/Homepage";
+import Homepage from "./pages/Homepage/Homepage";
 
 function App() {
   return (

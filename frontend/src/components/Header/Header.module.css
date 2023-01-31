@@ -1,13 +1,11 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 20px;
-    color: white;
-    align-items: center;
-  }
-  
-  .logo {
-    height: 64px;
-  }
-  
-  
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  color: white;
+  align-items: center;
+}
+
+.logo {
+  height: 64px;
+}

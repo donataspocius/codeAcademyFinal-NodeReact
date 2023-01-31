@@ -7,6 +7,7 @@ interface ButtonProps {
   to?: string | null;
   type?: "button" | "submit" | "reset" | undefined;
   size?: "big" | "small";
+  onClick: React.MouseEventHandler;
 }
 
 const Button = ({
@@ -14,6 +15,7 @@ const Button = ({
   to,
   type = "button",
   size = "big",
+  onClick,
 }: ButtonProps) => {
   const Component = to ? Link : "button";
   const buttonType = to ? undefined : type;
@@ -22,6 +24,7 @@ const Button = ({
       to={to ?? ""}
       type={buttonType}
       className={`${styles.button} ${styles[`button--${size}`]}`}
+      onClick={onClick}
     >
       {children}
     </Component>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
-import logo from "../../imgs/1.svg";
+import logo from "../../imgs/Go.svg";
 import Button from "../Button/Button";
 
 const Header = () => {
@@ -10,7 +10,9 @@ const Header = () => {
       <Link to={"/"}>
         <img className={styles.logo} src={logo} alt="company logo" />
       </Link>
-      <Button size={"big"}>SIGN IN</Button>
+      <Button size={"big"} onClick={() => console.log("button clicked")}>
+        SIGN IN
+      </Button>
     </div>
   );
 };

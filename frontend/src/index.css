@@ -1,5 +1,6 @@
 :root {
     --blue: rgb(37, 150, 190);
+    --greyBlue: rgb(33, 90, 111);
   }
   
   body {
@@ -9,7 +10,7 @@
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: white;
+    /* color: white; */
   }
   
   code {
