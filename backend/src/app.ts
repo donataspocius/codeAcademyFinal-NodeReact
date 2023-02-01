@@ -5,7 +5,10 @@ import dotenv from "dotenv";
 import { MONGODB_URI } from "./models/envConfig"; // importing string URI set for TS
 import { authenticateToken } from "./middlewares/auth.middlewares";
 import { createUser, loginUser } from "./controllers/auth.controller";
-import { getCountryData } from "./controllers/content.controller";
+import {
+  getCountryData,
+  getCitiesList,
+} from "./controllers/content.controller";
 
 dotenv.config();
 
@@ -26,8 +29,11 @@ app.post("/auth/signup", createUser);
 app.post("/auth/login", loginUser);
 
 // --- CONTENT ENDPOINTS
-// GET all cities --> HOME page initial load
+// GET all cities OR cityData --> HOME page initial load
 app.get("/content/:country", getCountryData);
+
+// GET cities data
+app.get("/cities/:country", getCitiesList);
 
 // CONNECTION TO MongoDB cities-api-db, CREATE SERVER
 mongoose
