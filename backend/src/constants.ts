@@ -1,4 +1,7 @@
-const API_LOGIN_USERNAME = "fd9c36f8ad99c044e452fd38a59031f2";
-const API_LOGIN_PASSWORD = "17486622720c22029e92664fcc603b46";
+import { API_LOGIN_PASSWORD, API_LOGIN_USERNAME } from "./envConfig";
 
 export let API_SECRET = btoa(`${API_LOGIN_USERNAME}:${API_LOGIN_PASSWORD}`);
+export const API_URL = {
+  getData: (idOrName: string) =>
+    `https://api.roadgoat.com/api/v2/destinations/${idOrName}`,
+};

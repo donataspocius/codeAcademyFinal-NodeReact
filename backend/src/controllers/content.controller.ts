@@ -1,4 +1,4 @@
-import { API_SECRET } from "../constants";
+import { API_SECRET, API_URL } from "../constants";
 import { Request, Response } from "express";
 
 export const getCountryData = async (
@@ -7,22 +7,7 @@ export const getCountryData = async (
 ): Promise<void> => {
   try {
     const country = req.params.country;
-    let response = await fetch(
-      `https://api.roadgoat.com/api/v2/destinations/${country}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: "Basic " + API_SECRET,
-        },
-      }
-    );
-    if (!response.ok) {
-      res
-        .status(400)
-        .json({ status: "fail", message: "failed fetching API data" });
-    }
-
-    let apiData = await response.json();
+    const apiData = await getApiData(country);
     res.status(200).json({ message: "success", apiData });
   } catch (error) {
     res
@@ -36,14 +21,20 @@ export const getCitiesList = async (
   res: Response
 ): Promise<void> => {
   try {
-    const cityDataHere = await getCityData(10755326);
+    const cityDataHere = await getCityData("10774751");
+    // const cityDataHere = await getCityData("10672983"); // bad one
     console.log("cityData here -->", cityDataHere);
     const country = req.params.country;
+    // const cityData = [];
     // const cityIdsList = await getCitiesIdList(country);
-    // cityIdsList?.forEach(async (id) => {
-    //   const cityDataHere = await getCityData(id);
-    //   return cityDataHere;
-    // });
+    // const cityData = await Promise.all<any>(
+    //   cityIdsList?.map(async (id) => {
+    //     const cityDataHere = await getCityData(String(id));
+    //     return cityDataHere;
+    //   })
+    // );
+
+    // console.log(cityData);
   } catch (error) {
     res
       .status(500)
@@ -79,7 +70,7 @@ interface CityData {
   name: string;
   photoUrl: any;
 }
-const getCityData = async (id: number): Promise<CityData | undefined> => {
+const getCityData = async (id: string): Promise<CityData | undefined> => {
   try {
     let response = await fetch(
       `https://api.roadgoat.com/api/v2/destinations/${id}`,
@@ -91,8 +82,12 @@ const getCityData = async (id: number): Promise<CityData | undefined> => {
       }
     );
     let apiData = await response.json();
+    // return apiData;
     const cityName = apiData.data.attributes.name;
-    const photoId = apiData.data.relationships.photos.data[0].id;
+    const photoId =
+      apiData.data.relationships.photos.data[0].id || apiData.included;
+    // apiData.included[0].relationships.featured_photo.data.id;
+    console.log("photoId -->", photoId);
     const photoDataArray = apiData.included;
     const photoObj = photoDataArray.filter(
       (obj: { id: string }) => obj.id === photoId
@@ -104,5 +99,20 @@ const getCityData = async (id: number): Promise<CityData | undefined> => {
     // return apiData;
   } catch (error) {
     console.log("error fetching API data (getCityData): ", error);
+  }
+};
+
+const getApiData = async (idOrName: string) => {
+  try {
+    let response = await fetch(API_URL.getData(idOrName), {
+      method: "GET",
+      headers: {
+        Authorization: "Basic " + API_SECRET,
+      },
+    });
+    let apiData = await response.json();
+    return apiData;
+  } catch (error) {
+    console.log("error fetching API data (getApiData()): ", error);
   }
 };
