@@ -21,20 +21,20 @@ export const getCitiesList = async (
   res: Response
 ): Promise<void> => {
   try {
-    const cityDataHere = await getCityData("10774751");
+    // const cityDataHere = await getCityData("10672983");
     // const cityDataHere = await getCityData("10672983"); // bad one
-    console.log("cityData here -->", cityDataHere);
+    // console.log("cityData here -->", cityDataHere);
     const country = req.params.country;
     // const cityData = [];
-    // const cityIdsList = await getCitiesIdList(country);
-    // const cityData = await Promise.all<any>(
-    //   cityIdsList?.map(async (id) => {
-    //     const cityDataHere = await getCityData(String(id));
-    //     return cityDataHere;
-    //   })
-    // );
+    const cityIdsList = await getCitiesIdList(country);
+    const cityData = await Promise.all<any>(
+      cityIdsList?.map(async (id) => {
+        const cityDataHere = await getCityData(String(id));
+        return cityDataHere;
+      })
+    );
 
-    // console.log(cityData);
+    console.log(cityData);
   } catch (error) {
     res
       .status(500)
@@ -85,9 +85,11 @@ const getCityData = async (id: string): Promise<CityData | undefined> => {
     // return apiData;
     const cityName = apiData.data.attributes.name;
     const photoId =
-      apiData.data.relationships.photos.data[0].id || apiData.included;
+      apiData.included[0].relationships.featured_photo.data.id ||
+      apiData.data.relationships.photos.data[0].id;
     // apiData.included[0].relationships.featured_photo.data.id;
     console.log("photoId -->", photoId);
+    console.log("cityName -->", cityName);
     const photoDataArray = apiData.included;
     const photoObj = photoDataArray.filter(
       (obj: { id: string }) => obj.id === photoId
