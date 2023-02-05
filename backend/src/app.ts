@@ -29,11 +29,11 @@ app.post("/auth/signup", createUser);
 app.post("/auth/login", loginUser);
 
 // --- CONTENT ENDPOINTS
-// GET all cities OR cityData --> HOME page initial load
-app.get("/content/:country", getCountryData);
-
-// GET cities data
+// GET all country cities data --> HOME page initial load
 app.get("/cities/:country", getCitiesList);
+
+// GET country data
+app.get("/:country", getCountryData);
 
 // CONNECTION TO MongoDB cities-api-db, CREATE SERVER
 mongoose

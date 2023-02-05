@@ -1,3 +1,9 @@
 .horizontalLine {
-    height: 10px;
+    height: 30px;
   }
+
+.cityCardsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
