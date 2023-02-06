@@ -51,20 +51,12 @@ const getCityData = async (id: string): Promise<CityData | undefined> => {
     // getting city detailed data
     let apiData = await getApiData(id);
 
+    // getting city data
     const cityId = apiData.data.id;
     const cityName = apiData.data.attributes.name;
-    // const photo1 = apiData.data.relationships.photos.data[0].id;
-    // const photo2 = apiData.included[0].relationships.featured_photo.data.id;
-    const cityID: string = apiData.data.id;
     const photoId =
-      apiData.data.relationships.photos.data[0].id ||
+      apiData.data?.relationships?.photos?.data?.[0]?.id ||
       apiData.included[0].relationships.featured_photo.data.id;
-    // console.log("photo1 ID -->", photo1);
-    // console.log("photo2 ID -->", photo2);
-
-    // const photoId = photo1 || photo2;
-    console.log("photoID -->", photoId);
-    console.log("cityID -->", cityId);
 
     const photoDataArray = apiData.included;
     const photoObj = photoDataArray.filter(
@@ -98,7 +90,7 @@ const getApiData = async (idOrName: string) => {
   }
 };
 
-// HELPER funkction to get country's data
+// HELPER function to get country's data
 export const getCountryData = async (
   req: Request,
   res: Response
@@ -107,25 +99,7 @@ export const getCountryData = async (
     const country = req.params.country;
     const apiData = await getApiData(country);
 
-    // getting photo IDs
-    const cityId = apiData.data.id;
-    const cityName = apiData.data.attributes.name;
-    // const photo1: string = apiData.data.relationships.photos.data[0].id;
-    // const photo1: string = apiData.data;
-    // const photo2: string =
-    //   apiData.included[0].relationships.featured_photo.data.id;
-    // const photo3: string =
-    //   apiData.included[1].relationships.featured_photo.data.id;
-
-    // const photoID = photo1 || photo2 || photo3;
-
-    console.log("cityId  -->", cityId);
-    console.log("cityName  -->", cityName);
-    // console.log("photo1  -->", photo1);
-    // console.log("photo2  -->", photo2);
-
     res.status(200).json({ message: "success", apiData });
-    // res.status(200).json({ message: "success", photoID });
   } catch (error) {
     res
       .status(500)

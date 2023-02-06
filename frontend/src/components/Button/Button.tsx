@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./Button.module.css";
 
 interface ButtonProps {
-  children: ReactNode;
+  children: string;
   to?: string | null;
   type?: "button" | "submit" | "reset" | undefined;
   size?: "big" | "small";

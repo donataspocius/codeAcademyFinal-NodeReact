@@ -10,9 +10,15 @@ const Header = () => {
       <Link to={"/"}>
         <img className={styles.logo} src={logo} alt="company logo" />
       </Link>
-      <Button size={"big"} onClick={() => console.log("button clicked")}>
-        SIGN IN
-      </Button>
+      <div>
+        <Button
+          to={"/login"}
+          size={"big"}
+          onClick={() => console.log("button clicked")}
+        >
+          SIGN IN
+        </Button>
+      </div>
     </div>
   );
 };

@@ -1,1 +1,9 @@
-rafc
+input {
+    height: 50px;
+    margin-top: 15px;
+    margin-bottom: 26px;
+    font-size: x-large;
+  }
+label {
+    font-size: 23px;
+}

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 
 import Homepage from "./pages/Homepage/Homepage";
+import Login from "./pages/Login/Login.tsx";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Layout>
     </BrowserRouter>

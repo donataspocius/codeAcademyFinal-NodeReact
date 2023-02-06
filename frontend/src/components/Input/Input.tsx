@@ -1,9 +1,12 @@
 import React, { Fragment, InputHTMLAttributes, useId } from "react";
+import styles from "./input.module.css";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  id?: string;
   label: string;
-  type: "text" | "email" | "password" | "search";
+  id?: string;
+  type?: "text" | "email" | "password" | "search";
+  name?: string | undefined;
+  value?: any;
 }
 
 const Input = ({
@@ -19,6 +22,7 @@ const Input = ({
     <Fragment>
       <label htmlFor={id || uniqueId}>{label}</label>
       <input
+        className={styles.input}
         id={id || uniqueId}
         type={type}
         name={name}
