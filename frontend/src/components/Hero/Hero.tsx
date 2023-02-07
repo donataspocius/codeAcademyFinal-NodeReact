@@ -8,7 +8,7 @@ const Hero = () => {
     <div className={styles.heroBanner}>
       <div className={styles.heroBannerContent}>
         <h1>TIME FOR AN ADVENTURE?</h1>
-        <Button size="big" onClick={() => console.log("HOP-IN button clicked")}>
+        <Button size="big" to="signup/user-info">
           HOP IN
         </Button>
       </div>

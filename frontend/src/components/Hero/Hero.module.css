@@ -8,6 +8,8 @@
   
   .heroBannerContent {
     margin: auto;
+    /* display: flex;
+    flex-direction: column; */
   }
   
   .heroBanner h1 {
@@ -16,9 +18,14 @@
     margin-bottom: 29px;
     color: white;
   }
+
+  .heroBannerContent {
+    text-align: center;
+
+  }
   
-  .heroBannerContent button {
+  /* .heroBannerContent button {
     display: block;
     margin: auto;
   }
-  
+   */

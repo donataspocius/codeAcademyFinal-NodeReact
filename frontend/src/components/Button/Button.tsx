@@ -7,7 +7,7 @@ interface ButtonProps {
   to?: string | null;
   type?: "button" | "submit" | "reset" | undefined;
   size?: "big" | "small";
-  onClick: React.MouseEventHandler;
+  onClick?: React.MouseEventHandler;
 }
 
 const Button = ({

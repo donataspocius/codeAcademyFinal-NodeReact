@@ -4,6 +4,7 @@ import Layout from "./components/Layout/Layout";
 
 import Homepage from "./pages/Homepage/Homepage";
 import Login from "./pages/Login/Login.tsx";
+import Subscribe from "./pages/Subscribe/Subscribe";
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup/*" element={<Subscribe />} />
+          <Route path="*" element={<p>Page not found.</p>} />
         </Routes>
       </Layout>
     </BrowserRouter>
