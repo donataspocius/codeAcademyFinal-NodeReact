@@ -3,16 +3,31 @@ import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 import logo from "../../imgs/Go.svg";
 import Button from "../Button/Button";
+import { useSelector, useDispatch } from "react-redux";
+import { State } from "../../redux/interfaces";
+import { updateAuthToken } from "../../redux/auth/authSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const authToken = useSelector((state: State) => state.auth.authToken);
+
+  const handleLogout = () => {
+    dispatch(updateAuthToken(""));
+  };
+
   return (
     <div className={styles.header}>
       <Link to={"/"}>
         <img className={styles.logo} src={logo} alt="company logo" />
       </Link>
       <div>
-        <Button to={"/login"} size={"big"}>
-          SIGN IN
+        <Button
+          to={authToken ? "/" : "/login"}
+          size={"big"}
+          onClick={authToken ? handleLogout : undefined}
+        >
+          {authToken ? "Logout" : "Sign in"}
         </Button>
       </div>
     </div>

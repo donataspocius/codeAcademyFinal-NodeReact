@@ -2,9 +2,9 @@ import React, { Fragment, InputHTMLAttributes, useId } from "react";
 import styles from "./input.module.css";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   id?: string;
-  type?: "text" | "email" | "password" | "search";
+  type?: "text" | "email" | "password" | "search" | "radio";
   name?: string | undefined;
   value?: any;
 }

@@ -6,6 +6,11 @@ const cssLoaders = ["style-loader", "css-loader"];
 
 module.exports = {
   entry: "./src/index.tsx",
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "build"),
+    publicPath: "/",
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "./src/index.html"),
@@ -39,6 +44,5 @@ module.exports = {
     port: 3000,
     open: true,
     historyApiFallback: true,
-    static: { publicPath: "/" },
   },
 };

@@ -1,12 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "./auth/authSlice";
 import middlewares from "./middlewares/middlewares";
-// import content from "./content";
-import auth from "./auth";
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
-    // [content.constants.MODULE_NAME]: content.contentReducer,
-    // [auth.constants.MODULE_NAME]: auth.authReducer,
+    auth: authReducer,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({
@@ -17,5 +15,3 @@ const store = configureStore({
   },
   devTools: true,
 });
-
-export default store;

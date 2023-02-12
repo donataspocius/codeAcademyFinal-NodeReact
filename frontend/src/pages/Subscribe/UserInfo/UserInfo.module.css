@@ -1,9 +1,0 @@
-.formContainer {
-    display: flex;
-    flex-direction: column;
-}
-
-.formContainer div {
-    text-align: right;
-    margin: 10px 0 10px 0
-}

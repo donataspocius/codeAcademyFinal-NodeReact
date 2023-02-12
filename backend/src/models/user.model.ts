@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
     required: [true, "Please provide a password"],
     // select: false,
   },
+  userProfile: String,
 });
 
 const User = mongoose.model("user", userSchema);

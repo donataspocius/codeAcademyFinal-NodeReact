@@ -28,3 +28,7 @@ get: /content/free-items
 get: /content/items
 get: /content/items/:itemId
 get: /sales/plans
+
+
+TO-DO:
+    -- localStorage middlewares --> make strongly-typed

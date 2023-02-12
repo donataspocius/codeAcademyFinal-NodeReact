@@ -1,1 +1,1 @@
-export const MODULE_NAME = "auth";
+// export const MODULE_NAME = "auth";

@@ -1,13 +1,19 @@
 .formContainer {
-    background-color: var(--lightBlue);
-    display: inline-flex;
-    flex-direction: column;
-    padding: 70px 90px 25px;
-    margin: 0 auto;
-    align-items: center;  
+  background-color: var(--lightBlue);
+  display: inline-flex;
+  flex-direction: column;
+  padding: 70px 90px 25px;
+  margin: 0 auto;
+  align-items: center;
 }
 
 .loginMain {
-    display: flex;
-    padding-top: 10vh;
+  display: flex;
+  padding-top: 10vh;
+}
+
+.formContainer p {
+  color: red;
+  margin-top: 15px;
+  font-size: 19px;
 }

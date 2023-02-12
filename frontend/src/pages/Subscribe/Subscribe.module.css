@@ -1,40 +1,82 @@
 .formContainer {
-    max-width: 826px;
-    padding-top: 10vh;
-    align-content: center;  
-    margin: 0 auto;
-  }
-  
-  .NavLink {
-    background-color: var(--greyBlue);
-    font-size: 16px;
-    font-weight: 700;
-    border: 1px solid black;
-    padding: 11px 47px 11px 47px;
-    text-decoration: none;
-    flex: auto;
-    color: white;
-    text-align: center;
+  max-width: 826px;
+  padding-top: 10vh;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.NavLink {
+  background-color: var(--greyBlue);
+  font-size: 16px;
+  font-weight: 700;
+  border: 1px solid black;
+  padding: 11px 47px 11px 47px;
+  text-decoration: none;
+  flex: auto;
+  color: white;
+  text-align: center;
 }
 
 .activeNavLink {
-    text-align: center;
-      color: black;
-    background-color: var(--red);
-    font-weight: 900;
-    border: 1px solid #000000;
-    padding: 11px 47px 11px 47px;
-    text-decoration: none;
-    flex: auto;
+  text-align: center;
+  color: black;
+  background-color: var(--red);
+  font-weight: 900;
+  border: 1px solid #000000;
+  padding: 11px 47px 11px 47px;
+  text-decoration: none;
+  flex: auto;
 }
 
 nav {
-    display: flex;
+  display: flex;
 }
 
 .formOutlet {
-    background-color: var(--lightBlue);
-    padding: 26px 30px 18px 30px;
-    border: 1px solid #000000;
-  }
-  
+  background-color: var(--lightBlue);
+  padding: 26px 30px 18px 30px;
+  border: 1px solid #000000;
+}
+
+.inputContainer {
+  min-height: 410px;
+  display: flex;
+  align-items: space-between;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.submitBtn {
+  align-self: flex-end;
+  padding-bottom: 15px;
+}
+
+.inputContainer div {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profileOptionsContainer {
+  display: flex;
+}
+
+.profileOptionsContainer label {
+  text-align: center;
+  display: inline-block;
+  padding: 4px 11px;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.profileOptionsContainer input {
+  height: 16px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+
+}
+
+.icons {
+  color: var(--greyBlue);
+  size: 300px;
+  margin-bottom: 35px;
+}

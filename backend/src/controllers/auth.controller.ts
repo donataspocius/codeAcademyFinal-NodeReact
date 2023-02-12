@@ -11,6 +11,7 @@ export const createUser = async (
 ): Promise<void> => {
   // getting user data
   const receivedUserData = req.body;
+  console.log("received user data -->", receivedUserData);
   try {
     // checking if user by that email already exists
     const userExist = await User.findOne({ email: receivedUserData.email });
@@ -24,11 +25,16 @@ export const createUser = async (
       const newUser = new User(preparedUserData);
 
       const newUserSaved = await newUser.save();
+      const accessToken = jwt.sign(
+        receivedUserData.username,
+        ACCESS_TOKEN_SECRET
+      );
 
       res.status(201).json({
         status: "success",
         message: "User created!",
         user: newUserSaved,
+        authToken: accessToken,
       });
     } else {
       res.status(400).json({

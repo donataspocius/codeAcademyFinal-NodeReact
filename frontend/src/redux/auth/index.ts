@@ -1,5 +1,8 @@
-import * as constants from "./constants";
+// import * as constants from "./constants";
+// import * as types from "./authTypes";
+// import * as actions from "./authActions";
+// import authReducer from "./authReducer";
 
-const module = { constants };
+// const module = { constants, types, actions, authReducer };
 
-export default module;
+// export default module;
