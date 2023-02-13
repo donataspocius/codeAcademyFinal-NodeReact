@@ -9,6 +9,7 @@ import {
   getCountryData,
   getCitiesList,
 } from "./controllers/content.controller";
+import { getUserData } from "./controllers/user.controller";
 
 dotenv.config();
 
@@ -34,6 +35,10 @@ app.get("/cities/:country", getCitiesList);
 
 // GET country data
 app.get("/:country", getCountryData);
+
+// GET user-content
+app.get("/user/content", authenticateToken, getUserData);
+// app.get("/user-content/:user", authenticateToken, getUserData);
 
 // CONNECTION TO MongoDB cities-api-db, CREATE SERVER
 mongoose

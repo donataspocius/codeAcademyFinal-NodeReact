@@ -2,7 +2,6 @@ import React from "react";
 import CityCard from "../../components/CityCard/CityCard";
 import Hero from "../../components/Hero/Hero";
 import styles from "./Homepage.module.css";
-import { Link } from "react-router-dom";
 
 const Homepage = () => {
   let mockData = [

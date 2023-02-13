@@ -59,7 +59,6 @@ const Subscribe = () => {
         >
           User info
         </NavLink>
-        <div>auth token here: {authToken}</div>
         <NavLink
           to="user-experience"
           className={({ isActive }) =>

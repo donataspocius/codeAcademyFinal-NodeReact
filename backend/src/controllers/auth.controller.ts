@@ -11,7 +11,6 @@ export const createUser = async (
 ): Promise<void> => {
   // getting user data
   const receivedUserData = req.body;
-  console.log("received user data -->", receivedUserData);
   try {
     // checking if user by that email already exists
     const userExist = await User.findOne({ email: receivedUserData.email });

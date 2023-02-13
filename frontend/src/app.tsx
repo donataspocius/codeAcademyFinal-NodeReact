@@ -15,7 +15,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup/*" element={<Subscribe />} />
-          <Route path="/user-content" element={<UserContent />} />
+          <Route path="/user-content/*" element={<UserContent />} />
           <Route path="*" element={<p>Page not found.</p>} />
         </Routes>
       </Layout>

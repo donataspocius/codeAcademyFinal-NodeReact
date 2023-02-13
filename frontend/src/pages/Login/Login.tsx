@@ -32,7 +32,7 @@ const Login = () => {
     if (token) {
       setInputCorrect(true);
       dispatch(updateAuthToken(token));
-      navigate("/user-content");
+      navigate("/user-content", { replace: true });
     }
     setInputCorrect(false);
     // e.target.reset();
