@@ -1,0 +1,23 @@
+.SearchBarContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.SearchBarContainer Input {
+    margin: 0px;
+    margin-right: 10px;
+}
+
+.SearchBarContainer h1 {
+    font-size: 19px;
+    margin-right: 10px;
+    font-weight: 500;
+    color: var(--blue);
+}
+
+.SearchBarContainer Button {
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}

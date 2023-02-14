@@ -21,6 +21,12 @@ const Header = () => {
       <Link to={"/"}>
         <img className={styles.logo} src={logo} alt="company logo" />
       </Link>
+      <Link
+        className={styles.myPlaces}
+        to={authToken ? "/user-content/want-to-go" : "/login"}
+      >
+        My Places
+      </Link>
       <div>
         <Button
           to={authToken ? "/" : "/login"}

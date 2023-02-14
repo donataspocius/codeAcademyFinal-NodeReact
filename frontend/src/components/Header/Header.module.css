@@ -9,3 +9,10 @@
 .logo {
   height: 64px;
 }
+
+.myPlaces {
+  font-size: 19px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--blue)
+}

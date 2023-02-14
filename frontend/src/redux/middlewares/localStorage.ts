@@ -17,7 +17,6 @@ const localStorage =
         };
         const currAuthToken = authToken(currentState);
         window.localStorage.setItem(AUTH_TOKEN_STORAGE_KEY, currAuthToken);
-        console.log("localStorage middleware FE set!");
         break;
       default:
         break;
