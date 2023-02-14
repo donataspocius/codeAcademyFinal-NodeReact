@@ -6,7 +6,10 @@ export const getCitiesList = async (
   res: Response
 ): Promise<void> => {
   try {
+    console.log("backend getCities list run");
     const country = req.params.country;
+    console.log("country in params -->", country);
+
     const cityIdsList = await getCitiesIdList(country); // getting every city ID of the country
 
     // fetching data by city ID

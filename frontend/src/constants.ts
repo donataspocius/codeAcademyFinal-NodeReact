@@ -4,6 +4,7 @@ export const API = {
   signup: `${API_DOMAIN}/auth/signup`,
   login: `${API_DOMAIN}/auth/login`,
   // userContent: (userId: string) => `${API_DOMAIN}/user/content/:${userId}`,
+  countryCities: (countryName: string) => `${API_DOMAIN}/cities/${countryName}`,
   userContent: `${API_DOMAIN}/user/content`,
 };
 

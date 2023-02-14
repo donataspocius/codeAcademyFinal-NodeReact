@@ -4,13 +4,15 @@ import styles from "./Header.module.css";
 import logo from "../../imgs/Go.svg";
 import Button from "../Button/Button";
 import { useSelector, useDispatch } from "react-redux";
-import { State } from "../../redux/interfaces";
+import { AuthState } from "../../redux/interfaces";
 import { updateAuthToken } from "../../redux/auth/authSlice";
+import { selectAuthToken } from "../../redux/auth/authSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
 
-  const authToken = useSelector((state: State) => state.auth.authToken);
+  // const authToken = useSelector((state: AuthState) => state.auth.authToken);
+  const authToken = useSelector(selectAuthToken);
 
   const handleLogout = () => {
     dispatch(updateAuthToken(""));
@@ -23,7 +25,7 @@ const Header = () => {
       </Link>
       <Link
         className={styles.myPlaces}
-        to={authToken ? "/user-content/want-to-go" : "/login"}
+        to={authToken ? "/user-content/explore" : "/login"}
       >
         My Places
       </Link>

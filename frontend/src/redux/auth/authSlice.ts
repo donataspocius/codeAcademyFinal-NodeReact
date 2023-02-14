@@ -1,6 +1,7 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AUTH_TOKEN_STORAGE_KEY } from "../../constants";
-// import {UPDATE_AUTH_TOKEN} from "./authTypes";
+import { AuthState } from "../interfaces";
+import { RootState } from "../store";
 
 interface State {
   authToken: string;
@@ -11,7 +12,7 @@ interface Action {
   payload: string;
 }
 
-const initialState = {
+const initialState: State = {
   authToken: window.localStorage.getItem(AUTH_TOKEN_STORAGE_KEY) || "",
 };
 
@@ -19,11 +20,17 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    updateAuthToken: (state: State, action: Action) => {
+    updateAuthToken: (state, action: PayloadAction<string>) => {
       state.authToken = action.payload;
     },
   },
 });
 
+// export selectors
+export const selectAuthToken = (state: RootState) => state.auth.authToken;
+
+// export actions
 export const { updateAuthToken } = authSlice.actions;
+
+// export reducer
 export default authSlice.reducer;

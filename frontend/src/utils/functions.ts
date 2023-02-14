@@ -39,3 +39,18 @@ export const getApiDataWithToken = async (apiAddress: string) => {
     console.log("error fetching token API data -->", error);
   }
 };
+
+export const getApiData = async (apiAddress: string) => {
+  try {
+    const fetchData = await fetch(apiAddress, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await fetchData.json();
+    return result;
+  } catch (error) {
+    console.log("error fetching token API data -->", error);
+  }
+};

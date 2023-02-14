@@ -1,0 +1,79 @@
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API } from "../../constants";
+import { CityData } from "../interfaces";
+import { RootState } from "../store";
+
+interface ContentState {
+  cities: CityData[];
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | undefined;
+}
+
+const initialState: ContentState = {
+  cities: [],
+  status: "idle",
+  error: undefined,
+};
+
+// export const fetchCountryCities = createAsyncThunk(
+//   "content/getCountryCities",
+//   async () => {
+//     // no more try/catch block needed
+//     const fetchData = await fetch(
+//       `http://localhost:5000/cities/united-states`,
+//       {
+//         method: "GET",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     );
+//     const result = await fetchData.json();
+//     return result;
+//   }
+// );
+export const fetchCountryCities = createAsyncThunk(
+  "content/getCountryCities",
+  async (apiAddress: string) => {
+    // no more try/catch block needed
+    const fetchData = await fetch(apiAddress, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await fetchData.json();
+    return result;
+  }
+);
+
+export const contentSlice = createSlice({
+  name: "content",
+  initialState,
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(fetchCountryCities.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(fetchCountryCities.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.cities = action.payload;
+      })
+      .addCase(fetchCountryCities.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      });
+  },
+});
+
+// export selectors
+export const selectAllCities = (state: RootState) => state.content.cities;
+export const selectContentStatus = (state: RootState) => state.content.status;
+export const selectContentError = (state: RootState) => state.content.error;
+
+// export actions
+export const {} = contentSlice.actions;
+
+// export reducer
+export default contentSlice.reducer;

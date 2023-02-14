@@ -33,7 +33,7 @@ app.post("/auth/login", loginUser);
 // GET all country cities data --> HOME page initial load
 app.get("/cities/:country", getCitiesList);
 
-// GET country data
+// GET country data --> FOR DEVELOPING ONLY
 app.get("/:country", getCountryData);
 
 // GET user-content

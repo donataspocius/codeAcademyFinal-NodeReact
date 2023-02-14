@@ -44,7 +44,7 @@ const Subscribe = () => {
     if (responseData.authToken) {
       //dispatch action to set token
       dispatch(updateAuthToken(responseData.authToken));
-      navigate("/user-content", { replace: true });
+      navigate("/user-content/explore", { replace: true });
     }
   };
 
