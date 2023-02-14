@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { API } from "../../constants";
 import { CityData } from "../interfaces";
 import { RootState } from "../store";
 
@@ -15,23 +14,6 @@ const initialState: ContentState = {
   error: undefined,
 };
 
-// export const fetchCountryCities = createAsyncThunk(
-//   "content/getCountryCities",
-//   async () => {
-//     // no more try/catch block needed
-//     const fetchData = await fetch(
-//       `http://localhost:5000/cities/united-states`,
-//       {
-//         method: "GET",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       }
-//     );
-//     const result = await fetchData.json();
-//     return result;
-//   }
-// );
 export const fetchCountryCities = createAsyncThunk(
   "content/getCountryCities",
   async (apiAddress: string) => {

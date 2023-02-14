@@ -11,11 +11,10 @@ const SearchBar = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onClick = () => {
-    console.log("searchInput -->", searchInput);
-
     if (inputRef.current) {
       inputRef.current.value = "";
     }
+    // dispatch an action to change cities state
     navigate("explore");
   };
 

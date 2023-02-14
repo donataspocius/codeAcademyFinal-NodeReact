@@ -1,23 +1,12 @@
-import React, { Fragment, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import { NavLink, Routes, Route } from "react-router-dom";
 import styles from "./UserContent.module.css";
-import { API } from "../../constants";
-import { getApiDataWithToken } from "../../utils/functions";
 import BeenThere from "./BeenThere/BeenThere";
 import WantToGo from "./WantToGo/WantToGo";
 import Explore from "./Explore/Explore";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
 const UserContent = () => {
-  const test = async () => {
-    const apiData = await getApiDataWithToken(API.userContent);
-  };
-
-  useEffect(() => {
-    test();
-  }, []);
-
   return (
     <div className={styles.formContainer}>
       <SearchBar />

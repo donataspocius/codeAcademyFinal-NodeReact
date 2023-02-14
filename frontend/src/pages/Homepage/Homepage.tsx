@@ -11,6 +11,7 @@ import {
   selectContentStatus,
   fetchCountryCities,
 } from "../../redux/content/contentSlice";
+import DotLoader from "react-spinners/DotLoader";
 
 const Homepage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -73,7 +74,8 @@ const Homepage = () => {
   let content;
   switch (status) {
     case "loading":
-      content = <p>Loading...</p>;
+      // content = <p>Loading...</p>;
+      content = <DotLoader color="rgb(37, 150, 190)" />;
       break;
     case "succeeded":
       content = cities.map((city) => {

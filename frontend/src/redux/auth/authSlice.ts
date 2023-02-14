@@ -1,15 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AUTH_TOKEN_STORAGE_KEY } from "../../constants";
-import { AuthState } from "../interfaces";
 import { RootState } from "../store";
 
 interface State {
   authToken: string;
-}
-
-interface Action {
-  type: string;
-  payload: string;
 }
 
 const initialState: State = {
