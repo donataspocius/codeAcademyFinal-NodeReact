@@ -35,6 +35,16 @@ const CityInfoModal = ({ id, setModal }: ModalProps) => {
     setModal(false);
   };
 
+  useEffect(() => {
+    const close = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setModal(false);
+      }
+    };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, []);
+
   return (
     <div className={styles.darkBackground} onClick={handleClick}>
       <div className={styles.centered}>
