@@ -25,10 +25,6 @@ const Explore = () => {
     }
   }, [status]);
 
-  // const onClick = (e: React.MouseEvent<HTMLElement>) => {
-  //   console.log("clicked card!");
-  // };
-
   let content;
   switch (status) {
     case "loading":

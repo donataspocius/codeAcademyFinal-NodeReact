@@ -4,78 +4,107 @@
   min-height: 100vh;
   z-index: 10;
   top: 0vh;
-  left: 0vh; 
+  left: 0vh;
   position: fixed;
   backdrop-filter: blur(5px);
 }
 
 .centered {
   position: fixed;
-  top: 35vh;
+  top: 5vh;
   left: 50%;
-  transform: translate(-50%, -20vh);
+  transform: translate(-50%, -1vh);
 }
 
 .modal {
-    padding: 20px;
+  padding: 35px;
   min-width: 500px;
   min-height: 500px;
   background: white;
   z-index: 100;
   border-radius: 16px;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+  overflow: visible;
 }
 
 .heading {
-    font-size: 37px;
-    font-weight: 700;
-    /* padding-top: 20px; */
-    padding-bottom: 30px;
-    text-align: center;
-    color: var(--greyBlue);
+  font-size: 37px;
+  font-weight: 700;
+  /* padding-top: 20px; */
+  padding-bottom: 20px;
+  text-align: center;
+  color: var(--greyBlue);
 }
 
 .contentContainer {
-    display: grid;
-    grid-template-columns: 500px 350px;
-    gap: 50px;
+  display: grid;
+  grid-template-columns: 500px 350px;
+  gap: 20px 35px;
 }
 
+.pictureContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
 .picture {
-    width: 500px;
-    object-fit: contain;
-    border-radius: 16px;
+  width: 500px;
+  max-height: 350px;
+  object-fit: contain;
+  border-radius: 16px;
 }
 
 .icons {
-    color: var(--greyBlue);
-    margin-right: 15px;
-  }
+  color: var(--greyBlue);
+  margin-right: 15px;
+}
 
 li {
-    margin-bottom: 10px;
-    text-align: left;
-    display: flex;
-    align-items: center;
-  }
+  margin-bottom: 10px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
 
 .linksContainer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
 .link {
-    display: flex;
-    flex-direction: column-reverse;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 30px;
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
 }
 
 .buttonsContainer {
-    display: flex;
-    gap: 15px;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.closeBtn {
+  cursor: pointer;
+  font-weight: 900;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 27px;
+  color: #2c3e50;
+  background: var(--blue);
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.06);
+  position: absolute;
+  right: 0;
+  top: 0;
+  align-self: flex-end;
+  margin-top: -7px;
+  margin-right: -7px;
+}
+
+.closeBtn:hover {
+  background: var(--greyBlue);
 }
