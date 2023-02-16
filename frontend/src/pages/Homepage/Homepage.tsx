@@ -65,6 +65,19 @@ const Homepage = () => {
     },
   ];
 
+  interface Event {
+    onClick: (e: React.MouseEvent<HTMLElement>) => void;
+  }
+
+  // const onClick = (e: React.MouseEvent<HTMLElement>) => {
+  //   console.log("clicked card!");
+  //   console.log("id -->", e.target);
+  // };
+  // const onClick = () => {
+  //   console.log("clicked card!");
+  //   console.log("id -->");
+  // };
+
   useEffect(() => {
     if (status === "idle") {
       dispatch(fetchCountryCities(API.countryCities("united-states")));
@@ -74,8 +87,11 @@ const Homepage = () => {
   let content;
   switch (status) {
     case "loading":
-      // content = <p>Loading...</p>;
-      content = <DotLoader color="rgb(37, 150, 190)" />;
+      content = (
+        <div className={styles.loaderContainer}>
+          <DotLoader color="rgb(37, 150, 190)" />
+        </div>
+      );
       break;
     case "succeeded":
       content = cities.map((city) => {
@@ -99,7 +115,6 @@ const Homepage = () => {
   return (
     <div>
       <Hero />
-      <div className={styles.horizontalLine}></div>
       <div className={styles.cityCardsContainer}>{content}</div>
     </div>
   );

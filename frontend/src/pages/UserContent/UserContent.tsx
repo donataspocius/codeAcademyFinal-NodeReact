@@ -36,7 +36,7 @@ const UserContent = () => {
           Explore
         </NavLink>
       </nav>
-      <div className={styles.formOutlet}>
+      <div>
         <Routes>
           <Route path="been-there" element={<BeenThere />} />
           <Route path="want-to-go" element={<WantToGo />} />

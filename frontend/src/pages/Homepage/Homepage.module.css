@@ -1,9 +1,12 @@
-.horizontalLine {
-    height: 30px;
-  }
-
 .cityCardsContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
+  margin-top: 25px;
+}
+
+.loaderContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5vh;
 }

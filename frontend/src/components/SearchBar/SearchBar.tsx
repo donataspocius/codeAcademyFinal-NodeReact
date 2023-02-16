@@ -4,10 +4,15 @@ import Input from "../Input/Input";
 import styles from "./Searchbar.module.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchCountryCities } from "../../redux/content/contentSlice";
+import { API } from "../../constants";
+import { AppDispatch } from "../../redux/store";
 
 const SearchBar = () => {
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onClick = () => {
@@ -15,6 +20,7 @@ const SearchBar = () => {
       inputRef.current.value = "";
     }
     // dispatch an action to change cities state
+    dispatch(fetchCountryCities(API.countryCities(searchInput)));
     navigate("explore");
   };
 

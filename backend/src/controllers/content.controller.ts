@@ -6,9 +6,7 @@ export const getCitiesList = async (
   res: Response
 ): Promise<void> => {
   try {
-    console.log("backend getCities list run");
     const country = req.params.country;
-    console.log("country in params -->", country);
 
     const cityIdsList = await getCitiesIdList(country); // getting every city ID of the country
 
@@ -47,7 +45,28 @@ export interface CityData {
   id: string;
   name: string;
   photoUrl: string;
+  population: number;
+  coordinates: {
+    lat: number;
+    long: number;
+  };
+  checkInCount: number;
+  averageRating: number;
+  airbnbUrl: string;
+  carRentalUrl: string;
+  cityGuideUrl: string;
 }
+
+// interface FullCityData extends CityData {
+//   population: number;
+//   coordinates: {
+//     lat: number;
+//     long: number;
+//   };
+//   checkInCount: number;
+//   averageRating: number;
+//   airbnbUrl: string;
+// }
 
 const getCityData = async (id: string): Promise<CityData | undefined> => {
   try {
@@ -67,10 +86,28 @@ const getCityData = async (id: string): Promise<CityData | undefined> => {
     );
     const photoUrl = photoObj[0].attributes.image.large;
 
+    const population = apiData.data.attributes.population;
+    const coordinates = {
+      lat: apiData.data.attributes.latitude,
+      long: apiData.data.attributes.longitude,
+    };
+    const checkInCount = apiData.data.attributes.check_in_count;
+    const averageRating = apiData.data.attributes.average_rating;
+    const airbnbUrl = apiData.data.attributes.airbnb_url;
+    const carRentalUrl = apiData.data.attributes.kayak_car_rental_url;
+    const cityGuideUrl = apiData.data.attributes.getyourguide_url;
+
     const cityData: CityData = {
       name: cityName,
       photoUrl: photoUrl,
       id: cityId,
+      population,
+      coordinates,
+      checkInCount,
+      averageRating,
+      airbnbUrl,
+      carRentalUrl,
+      cityGuideUrl,
     };
     return cityData;
   } catch (error) {

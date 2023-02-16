@@ -1,35 +1,53 @@
 .formContainer {
-    padding-top: 10vh;
-    align-content: center;
-    margin: 0 auto;
-  }
-  
-  .NavLink {
-    background-color: var(--greyBlue);
-    font-size: 16px;
-    font-weight: 700;
-    border: 1px solid black;
-    padding: 11px 47px 11px 47px;
-    text-decoration: none;
-    flex: auto;
-    color: white;
-    text-align: center;
+  padding-top: 10vh;
+  align-content: center;
+  margin: 0 auto;
 }
 
-  .activeNavLink {
-    text-align: center;
-    color: black;
-    color: var(--blue);
-    background-color: var(--red);
-    font-weight: 900;
-    border: 1px solid #000000;
-    padding: 11px 47px 11px 47px;
-    text-decoration: none;
-    flex: auto;
-    text-transform: uppercase;
-  }
+.NavLink {
+  background-color: var(--greyBlue);
+  font-size: 16px;
+  font-weight: 700;
+  border: 1px solid black;
+  padding: 11px 47px 11px 47px;
+  text-decoration: none;
+  flex: auto;
+  color: white;
+  text-align: center;
+}
 
-  .formContainer nav {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+.activeNavLink {
+  text-align: center;
+  color: black;
+  color: var(--blue);
+  background-color: var(--red);
+  font-weight: 900;
+  border: 1px solid #000000;
+  padding: 11px 47px 11px 47px;
+  text-decoration: none;
+  flex: auto;
+  text-transform: uppercase;
+}
+
+.formContainer nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.formContainer p {
+  font-size: 21px;
+  font-weight: 500;
+}
+
+.loaderContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5vh;
+}

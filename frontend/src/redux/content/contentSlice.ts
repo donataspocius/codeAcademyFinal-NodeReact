@@ -24,6 +24,9 @@ export const fetchCountryCities = createAsyncThunk(
         "Content-Type": "application/json",
       },
     });
+    if (fetchData.status !== 200) {
+      throw new Error("Please check your input - no such country found!");
+    }
     const result = await fetchData.json();
     return result;
   }

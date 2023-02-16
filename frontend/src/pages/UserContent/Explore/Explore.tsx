@@ -10,6 +10,7 @@ import {
   selectContentStatus,
   fetchCountryCities,
 } from "../../../redux/content/contentSlice";
+import styles from "../UserContent.module.css";
 
 const Explore = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -24,22 +25,34 @@ const Explore = () => {
     }
   }, [status]);
 
+  // const onClick = (e: React.MouseEvent<HTMLElement>) => {
+  //   console.log("clicked card!");
+  // };
+
   let content;
   switch (status) {
     case "loading":
-      content = <DotLoader color="rgb(37, 150, 190)" />;
+      content = (
+        <div className={styles.loaderContainer}>
+          <DotLoader color="rgb(37, 150, 190)" />
+        </div>
+      );
       break;
     case "succeeded":
-      content = cities.map((city) => {
-        return (
-          <CityCard
-            key={city.id}
-            id={city.id}
-            name={city.name}
-            photoUrl={city.photoUrl}
-          />
-        );
-      });
+      if (Array.isArray(cities)) {
+        content = cities.map((city) => {
+          return (
+            <CityCard
+              key={city.id}
+              id={city.id}
+              name={city.name}
+              photoUrl={city.photoUrl}
+            />
+          );
+        });
+      } else {
+        content = <p>Please check your input - no such country found!</p>;
+      }
       break;
     case "failed":
       content = <p>{error}</p>;
@@ -47,7 +60,7 @@ const Explore = () => {
     default:
       break;
   }
-  return <div>{content}</div>;
+  return <div className={styles.cardsContainer}>{content}</div>;
 };
 
 export default Explore;
