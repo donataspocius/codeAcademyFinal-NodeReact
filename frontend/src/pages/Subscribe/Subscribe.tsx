@@ -7,7 +7,7 @@ import UserExperience from "./UserExperience/UserExperience";
 import styles from "./Subscribe.module.css";
 import UserInfo from "./UserInfo/UserInfo";
 import { API } from "../../constants";
-import { updateAuthToken } from "../../redux/auth/authSlice";
+import { updateAuthToken, updateUserId } from "../../redux/auth/authSlice";
 
 interface State {
   authToken: string;
@@ -41,9 +41,10 @@ const Subscribe = () => {
   const onClick = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const responseData = await getToken(API.signup, userInfo);
-    if (responseData.authToken) {
+    if (responseData.authToken && responseData.userId) {
       //dispatch action to set token
       dispatch(updateAuthToken(responseData.authToken));
+      dispatch(updateUserId(responseData.userId));
       navigate("/user-content/explore", { replace: true });
     }
   };

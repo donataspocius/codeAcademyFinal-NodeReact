@@ -5,7 +5,7 @@ import logo from "../../imgs/Go.svg";
 import Button from "../Button/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { AuthState } from "../../redux/interfaces";
-import { updateAuthToken } from "../../redux/auth/authSlice";
+import { updateAuthToken, updateUserId } from "../../redux/auth/authSlice";
 import { selectAuthToken } from "../../redux/auth/authSlice";
 
 const Header = () => {
@@ -16,6 +16,7 @@ const Header = () => {
 
   const handleLogout = () => {
     dispatch(updateAuthToken(""));
+    dispatch(updateUserId(""));
   };
 
   return (

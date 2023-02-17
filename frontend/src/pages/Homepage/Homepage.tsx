@@ -20,63 +20,9 @@ const Homepage = () => {
   const status = useSelector(selectContentStatus);
   const error = useSelector(selectContentError);
 
-  let mockData = [
-    {
-      id: "1",
-      name: "New York, NY",
-      photoUrl:
-        "https://cdn.roadgoat.com/uploads/photo/image/608/large_travel-guide-of-new-york-ny-usa-original.jpg",
-    },
-    {
-      id: "2",
-      name: "Honolulu, HI",
-      photoUrl:
-        "https://cdn.roadgoat.com/uploads/photo/image/417/large_travel-guide-of-honolulu-hi-usa-original.jpg",
-    },
-    {
-      id: "3",
-      name: "Yosemite Village, CA",
-      photoUrl:
-        "https://cdn.roadgoat.com/uploads/photo/image/1913/large_Yosemite.jpeg",
-    },
-    {
-      id: "4",
-      name: "Burlington, VT",
-      photoUrl:
-        "https://cdn.roadgoat.com/uploads/photo/image/345/large_travel-guide-of-burlington-vt-usa-original.jpg",
-    },
-    {
-      id: "5",
-      name: "South San Francisco, CA",
-      photoUrl:
-        "https://cdn.roadgoat.com/uploads/photo/image/2161/large_38904301632_a915ab07d8_o.jpg",
-    },
-    {
-      id: "6",
-      name: "Lahaina, HI",
-      photoUrl:
-        "https://cdn.roadgoat.com/uploads/photo/image/1931/large_lahaina.jpeg",
-    },
-    {
-      id: "7",
-      name: "West Yellowstone, MT",
-      photoUrl:
-        "https://cdn.roadgoat.com/uploads/photo/image/1929/large_WY.jpeg",
-    },
-  ];
-
   interface Event {
     onClick: (e: React.MouseEvent<HTMLElement>) => void;
   }
-
-  // const onClick = (e: React.MouseEvent<HTMLElement>) => {
-  //   console.log("clicked card!");
-  //   console.log("id -->", e.target);
-  // };
-  // const onClick = () => {
-  //   console.log("clicked card!");
-  //   console.log("id -->");
-  // };
 
   useEffect(() => {
     if (status === "idle") {
@@ -94,6 +40,7 @@ const Homepage = () => {
       );
       break;
     case "succeeded":
+    case "failed":
       content = cities.map((city) => {
         return (
           <CityCard
@@ -104,9 +51,6 @@ const Homepage = () => {
           />
         );
       });
-      break;
-    case "failed":
-      content = <p>{error}</p>;
       break;
     default:
       break;

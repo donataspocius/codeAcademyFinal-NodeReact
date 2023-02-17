@@ -6,7 +6,7 @@ import { getToken } from "../../utils/functions";
 import { API } from "../../constants";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { updateAuthToken } from "../../redux/auth/authSlice";
+import { updateAuthToken, updateUserId } from "../../redux/auth/authSlice";
 
 const Login = () => {
   const [userData, setUserData] = useState({});
@@ -27,13 +27,18 @@ const Login = () => {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const getLoginCredentials = await getToken(API.login, userData);
     const token = getLoginCredentials.accessToken;
-    if (token) {
+    const userId = getLoginCredentials.userId;
+
+    if (token && userId) {
       setInputCorrect(true);
       dispatch(updateAuthToken(token));
+      dispatch(updateUserId(userId));
       navigate("/user-content/explore", { replace: true });
     }
+
     setInputCorrect(false);
     // e.target.reset();
   };
@@ -49,7 +54,7 @@ const Login = () => {
           onChange={onChange}
         />
         <Button type="submit">Sign In</Button>
-        {!inputCorrect && <p>Please check the login details.</p>}
+        {!inputCorrect && <p>Please check login details.</p>}
       </form>
     </div>
   );

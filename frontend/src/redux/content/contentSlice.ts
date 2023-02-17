@@ -1,15 +1,19 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { CityData } from "../interfaces";
 import { RootState } from "../store";
 
 interface ContentState {
   cities: CityData[];
+  visitedCities: string[];
+  wishCities: string[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | undefined;
 }
 
 const initialState: ContentState = {
   cities: [],
+  visitedCities: [],
+  wishCities: [],
   status: "idle",
   error: undefined,
 };
@@ -35,7 +39,11 @@ export const fetchCountryCities = createAsyncThunk(
 export const contentSlice = createSlice({
   name: "content",
   initialState,
-  reducers: {},
+  reducers: {
+    addToVisitedCities: (state, action: PayloadAction<string>) => {
+      state.visitedCities.push(action.payload);
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchCountryCities.pending, (state, action) => {
@@ -58,7 +66,7 @@ export const selectContentStatus = (state: RootState) => state.content.status;
 export const selectContentError = (state: RootState) => state.content.error;
 
 // export actions
-export const {} = contentSlice.actions;
+export const { addToVisitedCities } = contentSlice.actions;
 
 // export reducer
 export default contentSlice.reducer;
