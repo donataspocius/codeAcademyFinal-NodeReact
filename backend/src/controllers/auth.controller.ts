@@ -32,8 +32,8 @@ export const createUser = async (
       res.status(201).json({
         status: "success",
         message: "User created!",
-        user: newUserSaved,
         authToken: accessToken,
+        userId: newUserSaved._id,
       });
     } else {
       res.status(400).json({
@@ -52,7 +52,7 @@ export const createUser = async (
 export const loginUser = async (req: Request, res: Response): Promise<void> => {
   // CHECK IF USER EXISTS
   const user = await User.findOne({ email: req.body.email });
-
+  console.log("backend login user data -->", user);
   // AUTHENTICATE USER
   if (user) {
     try {
@@ -63,7 +63,11 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
 
       if (passwordCorrect) {
         const accessToken = jwt.sign(user.username, ACCESS_TOKEN_SECRET);
-        res.status(200).json({ status: "success", accessToken });
+        res.status(200).json({
+          status: "success",
+          accessToken,
+          userId: user._id,
+        });
       } else {
         res.status(400).json({ status: "fail", message: "wrong credentials" });
       }

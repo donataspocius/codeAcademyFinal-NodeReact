@@ -9,7 +9,7 @@ import {
   getCountryData,
   getCitiesList,
 } from "./controllers/content.controller";
-import { getUserData } from "./controllers/user.controller";
+import { getUserData, updateUserData } from "./controllers/user.controller";
 
 dotenv.config();
 
@@ -29,16 +29,19 @@ app.post("/auth/signup", createUser);
 // login user
 app.post("/auth/login", loginUser);
 
+// --- USER ENPOINTS
+// GET user data FOR DEVELOPMENT ONLY
+app.get("/user/:userId", authenticateToken, getUserData);
+
+// UPDATE user visited/wish lists
+app.put("/user/:userId", updateUserData);
+
 // --- CONTENT ENDPOINTS
 // GET all country cities data --> HOME page initial load
 app.get("/cities/:country", getCitiesList);
 
 // GET country data --> FOR DEVELOPING ONLY
 app.get("/:country", getCountryData);
-
-// GET user-content
-app.get("/user/content", authenticateToken, getUserData);
-// app.get("/user-content/:user", authenticateToken, getUserData);
 
 // CONNECTION TO MongoDB cities-api-db, CREATE SERVER
 mongoose

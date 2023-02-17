@@ -18,6 +18,8 @@ const userSchema = new mongoose.Schema({
     // select: false,
   },
   userProfile: String,
+  visitedCities: [String],
+  wishCities: [String],
 });
 
 const User = mongoose.model("user", userSchema);
