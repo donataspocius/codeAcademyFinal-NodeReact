@@ -8,6 +8,7 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset" | undefined;
   size?: "big" | "small";
   onClick?: React.MouseEventHandler;
+  disabled?: boolean;
 }
 
 const Button = ({
@@ -16,6 +17,7 @@ const Button = ({
   type = "button",
   size = "big",
   onClick,
+  disabled,
 }: ButtonProps) => {
   const Component = to ? Link : "button";
   const buttonType = to ? undefined : type;
@@ -25,6 +27,7 @@ const Button = ({
       type={buttonType}
       className={`${styles.button} ${styles[`button--${size}`]}`}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </Component>

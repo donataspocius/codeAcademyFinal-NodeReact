@@ -38,7 +38,7 @@ export const updateUserVisitedCities = async (
     const result = await fetchData.json();
     return result;
   } catch (error) {
-    console.log("error fetching API data -->", error);
+    console.log("error fetching API data --->", error);
   }
 };
 

@@ -8,7 +8,7 @@ import styles from "./Subscribe.module.css";
 import UserInfo from "./UserInfo/UserInfo";
 import { API } from "../../constants";
 import { updateAuthToken, updateUserId } from "../../redux/auth/authSlice";
-import { initializeContentState } from "../../redux/content/contentSlice";
+// import { initializeContentState } from "../../redux/content/contentSlice";
 
 interface State {
   authToken: string;

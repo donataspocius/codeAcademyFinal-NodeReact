@@ -20,7 +20,13 @@ const SearchBar = () => {
       inputRef.current.value = "";
     }
     // dispatch an action to change cities state
-    dispatch(fetchCountryCities(API.countryCities(searchInput)));
+    dispatch(
+      fetchCountryCities({
+        apiAddress: API.countryCities(searchInput),
+        type: "country",
+      })
+    );
+    // dispatch(fetchCountryCities(API.countryCities(searchInput)));
     navigate("explore");
   };
 

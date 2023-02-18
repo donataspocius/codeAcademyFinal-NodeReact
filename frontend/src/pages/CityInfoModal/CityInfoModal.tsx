@@ -4,6 +4,8 @@ import {
   addToVisitedCities,
   addToWishCities,
   selectAllCities,
+  selectVisitedCitiesData,
+  selectWishCitiesData,
 } from "../../redux/content/contentSlice";
 import styles from "./CityInfoModal.module.css";
 import { CityData } from "../../redux/interfaces";
@@ -14,6 +16,7 @@ import { FaAirbnb, FaCity } from "react-icons/Fa";
 import Button from "../../components/Button/Button";
 import Map from "../../components/Map/Map";
 import { RiCloseLine } from "react-icons/ri";
+import { selectAuthToken } from "../../redux/auth/authSlice";
 
 interface ModalProps {
   id: string;
@@ -24,6 +27,9 @@ const CityInfoModal = ({ id, setModal }: ModalProps) => {
   const [cityData, setCityData] = useState<CityData>();
 
   const cities = useSelector(selectAllCities);
+  const wishCities = useSelector(selectWishCitiesData);
+  const visitedCities = useSelector(selectVisitedCitiesData);
+  const authenticated = useSelector(selectAuthToken);
   const dispatch = useDispatch();
 
   const CityDataInState = cities.filter((city) => city.id === id);
@@ -57,10 +63,12 @@ const CityInfoModal = ({ id, setModal }: ModalProps) => {
   ];
 
   const handleAddToVisited = (e: React.MouseEvent<HTMLElement>) => {
+    setModal(false);
     dispatch(addToVisitedCities(cityData?.id!));
   };
 
-  const handleAddToWish = () => {
+  const handleAddToWish = (e: React.MouseEvent<HTMLElement>) => {
+    setModal(false);
     dispatch(addToWishCities(cityData?.id!));
   };
 
@@ -124,8 +132,18 @@ const CityInfoModal = ({ id, setModal }: ModalProps) => {
                     </div>
                   </div>
                   <div className={styles.buttonsContainer}>
-                    <Button onClick={handleAddToVisited}>Been There</Button>
-                    <Button onClick={handleAddToWish}>Want to Go</Button>
+                    <Button
+                      disabled={!Boolean(authenticated)}
+                      onClick={handleAddToVisited}
+                    >
+                      Been There
+                    </Button>
+                    <Button
+                      disabled={!Boolean(authenticated)}
+                      onClick={handleAddToWish}
+                    >
+                      Want to Go
+                    </Button>
                   </div>
                 </div>
               </div>

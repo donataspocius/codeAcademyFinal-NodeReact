@@ -5,7 +5,9 @@ import { RootState } from "../store";
 interface ContentState {
   cities: CityData[];
   visitedCities: string[];
+  visitedCitiesData: CityData[];
   wishCities: string[];
+  wishCitiesData: CityData[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | undefined;
 }
@@ -13,14 +15,22 @@ interface ContentState {
 const initialState: ContentState = {
   cities: [],
   visitedCities: [],
+  visitedCitiesData: [],
   wishCities: [],
+  wishCitiesData: [],
   status: "idle",
   error: undefined,
 };
 
+interface APIRequestType {
+  apiAddress: string;
+  type: "country" | "visitedCities" | "wishCities";
+}
+
 export const fetchCountryCities = createAsyncThunk(
   "content/getCountryCities",
-  async (apiAddress: string) => {
+  async ({ apiAddress, type }: APIRequestType) => {
+    // async (apiAddress: string) => {
     // no more try/catch block needed
     const fetchData = await fetch(apiAddress, {
       method: "GET",
@@ -32,7 +42,7 @@ export const fetchCountryCities = createAsyncThunk(
       throw new Error("Please check your input - no such country found!");
     }
     const result = await fetchData.json();
-    return result;
+    return { result, type };
   }
 );
 
@@ -72,7 +82,14 @@ export const contentSlice = createSlice({
       })
       .addCase(fetchCountryCities.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.cities = action.payload;
+
+        if (action.payload.type === "country") {
+          state.cities = action.payload.result;
+        } else if (action.payload.type === "visitedCities") {
+          state.visitedCitiesData = action.payload.result;
+        } else if (action.payload.type === "wishCities") {
+          state.wishCitiesData = action.payload.result;
+        }
       })
       .addCase(fetchCountryCities.rejected, (state, action) => {
         state.status = "failed";
@@ -83,6 +100,13 @@ export const contentSlice = createSlice({
 
 // export selectors
 export const selectAllCities = (state: RootState) => state.content.cities;
+export const selectVisitedCities = (state: RootState) =>
+  state.content.visitedCities;
+export const selectVisitedCitiesData = (state: RootState) =>
+  state.content.visitedCitiesData;
+export const selectWishCities = (state: RootState) => state.content.wishCities;
+export const selectWishCitiesData = (state: RootState) =>
+  state.content.wishCitiesData;
 export const selectContentStatus = (state: RootState) => state.content.status;
 export const selectContentError = (state: RootState) => state.content.error;
 

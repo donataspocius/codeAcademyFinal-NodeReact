@@ -11,19 +11,39 @@ import {
   fetchCountryCities,
 } from "../../../redux/content/contentSlice";
 import styles from "../UserContent.module.css";
+import { selectUserId } from "../../../redux/auth/authSlice";
 
 const Explore = () => {
   const dispatch = useDispatch<AppDispatch>();
 
+  const userId = useSelector(selectUserId);
   const cities = useSelector(selectAllCities);
   const status = useSelector(selectContentStatus);
   const error = useSelector(selectContentError);
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(fetchCountryCities(API.countryCities("united-states")));
+      dispatch(
+        fetchCountryCities({
+          apiAddress: API.countryCities("united-states"),
+          type: "country",
+        })
+      );
+      dispatch(
+        fetchCountryCities({
+          apiAddress: API.userVisitedCities(userId),
+          type: "visitedCities",
+        })
+      );
+      dispatch(
+        fetchCountryCities({
+          apiAddress: API.userWishCities(userId),
+          type: "wishCities",
+        })
+      );
+      // dispatch(fetchCountryCities(API.countryCities("united-states")));
     }
-  }, [status]);
+  }, [status, dispatch]);
 
   let content;
   switch (status) {

@@ -5,6 +5,9 @@ export const API = {
   login: `${API_DOMAIN}/auth/login`,
   updateUser: (userId: string) => `${API_DOMAIN}/user/${userId}`,
   countryCities: (countryName: string) => `${API_DOMAIN}/cities/${countryName}`,
+  userVisitedCities: (userId: string) =>
+    `${API_DOMAIN}/user/visitedCities/${userId}`,
+  userWishCities: (userId: string) => `${API_DOMAIN}/user/wishCities/${userId}`,
   userContent: `${API_DOMAIN}/user/content`,
 };
 

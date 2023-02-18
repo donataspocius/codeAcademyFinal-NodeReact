@@ -12,6 +12,7 @@ import {
   fetchCountryCities,
 } from "../../redux/content/contentSlice";
 import DotLoader from "react-spinners/DotLoader";
+import { selectUserId } from "../../redux/auth/authSlice";
 
 const Homepage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -19,6 +20,7 @@ const Homepage = () => {
   const cities = useSelector(selectAllCities);
   const status = useSelector(selectContentStatus);
   const error = useSelector(selectContentError);
+  const userId = useSelector(selectUserId);
 
   interface Event {
     onClick: (e: React.MouseEvent<HTMLElement>) => void;
@@ -26,7 +28,13 @@ const Homepage = () => {
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(fetchCountryCities(API.countryCities("united-states")));
+      dispatch(
+        fetchCountryCities({
+          apiAddress: API.countryCities("united-states"),
+          type: "country",
+        })
+      );
+      // dispatch(fetchCountryCities(API.countryCities("united-states")));
     }
   }, [status, dispatch]);
 

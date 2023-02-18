@@ -13,6 +13,7 @@ import {
   getUserLists,
   updateUserData,
   getUserVisitedCities,
+  getUserWishCities,
 } from "./controllers/user.controller";
 
 dotenv.config();
@@ -38,7 +39,11 @@ app.post("/auth/login", loginUser);
 app.get("/user/:userId", getUserLists);
 // app.get("/user/:userId", authenticateToken, getUserData);
 
+// GET user visited cities data
 app.get("/user/visitedCities/:userId", getUserVisitedCities);
+
+// GET user wish cities data
+app.get("/user/wishCities/:userId", getUserWishCities);
 
 // UPDATE user visited/wish lists
 app.put("/user/:userId", updateUserData);

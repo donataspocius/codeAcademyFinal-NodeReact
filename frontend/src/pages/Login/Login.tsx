@@ -7,7 +7,7 @@ import { API } from "../../constants";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateAuthToken, updateUserId } from "../../redux/auth/authSlice";
-import { initializeContentState } from "../../redux/content/contentSlice";
+// import { initializeContentState } from "../../redux/content/contentSlice";
 
 const Login = () => {
   const [userData, setUserData] = useState({});
@@ -32,11 +32,11 @@ const Login = () => {
     e.preventDefault();
 
     // function to get user data from database
-    const getLists = async () => {
-      const lists = async () => await getUserLists(API.updateUser(userId));
-      const userLists = await lists();
-      dispatch(initializeContentState(userLists));
-    };
+    // const getLists = async () => {
+    //   const lists = async () => await getUserLists(API.updateUser(userId));
+    //   const userLists = await lists();
+    //   dispatch(initializeContentState(userLists));
+    // };
 
     const getLoginCredentials = await getToken(API.login, userData);
     const token = getLoginCredentials.accessToken;
@@ -46,7 +46,7 @@ const Login = () => {
       setInputCorrect(true);
       dispatch(updateAuthToken(token));
       dispatch(updateUserId(userId));
-      getLists();
+      // getLists();
       navigate("/user-content/explore", { replace: true });
     }
 
