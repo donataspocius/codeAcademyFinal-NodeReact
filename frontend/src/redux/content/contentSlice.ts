@@ -36,12 +36,31 @@ export const fetchCountryCities = createAsyncThunk(
   }
 );
 
+interface initializeStateAction {
+  visitedCities: string[];
+  wishCities: string[];
+}
+
 export const contentSlice = createSlice({
   name: "content",
   initialState,
   reducers: {
+    initializeContentState: (
+      state,
+      // action: PayloadAction<[string[], string[]]>
+      action: PayloadAction<initializeStateAction>
+    ) => {
+      state.visitedCities = action.payload.visitedCities;
+      state.wishCities = action.payload.wishCities;
+    },
     addToVisitedCities: (state, action: PayloadAction<string>) => {
       state.visitedCities.push(action.payload);
+    },
+    addToWishCities: (state, action: PayloadAction<string>) => {
+      state.wishCities.push(action.payload);
+    },
+    resetUserState: (state) => {
+      return initialState;
     },
   },
   extraReducers(builder) {
@@ -66,7 +85,12 @@ export const selectContentStatus = (state: RootState) => state.content.status;
 export const selectContentError = (state: RootState) => state.content.error;
 
 // export actions
-export const { addToVisitedCities } = contentSlice.actions;
+export const {
+  addToVisitedCities,
+  addToWishCities,
+  resetUserState,
+  initializeContentState,
+} = contentSlice.actions;
 
 // export reducer
 export default contentSlice.reducer;

@@ -23,13 +23,9 @@ export const getToken = async (apiAddress: string, body: GetTokenProps) => {
   }
 };
 
-interface UpdateDatabaseProps {
-  visitedCities: string[];
-}
-
-export const updateDatabase = async (
+export const updateUserVisitedCities = async (
   apiAddress: string,
-  body: UpdateDatabaseProps
+  visitedCities: string[]
 ) => {
   try {
     const fetchData = await fetch(apiAddress, {
@@ -37,7 +33,41 @@ export const updateDatabase = async (
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...body }),
+      body: JSON.stringify({ visitedCities }),
+    });
+    const result = await fetchData.json();
+    return result;
+  } catch (error) {
+    console.log("error fetching API data -->", error);
+  }
+};
+
+export const updateUserWishCities = async (
+  apiAddress: string,
+  wishCities: string[]
+) => {
+  try {
+    const fetchData = await fetch(apiAddress, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ wishCities }),
+    });
+    const result = await fetchData.json();
+    return result;
+  } catch (error) {
+    console.log("error fetching API data -->", error);
+  }
+};
+
+export const getUserLists = async (apiAddress: string) => {
+  try {
+    const fetchData = await fetch(apiAddress, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     const result = await fetchData.json();
     return result;

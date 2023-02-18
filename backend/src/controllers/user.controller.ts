@@ -12,13 +12,17 @@ export const updateUserData = async (
     await User.findByIdAndUpdate(id, newUserData);
     const updatedUser = await User.findById(id);
 
-    res.json({ status: "success", updatedUser });
+    res.json({
+      status: "success",
+      visitedCities: updatedUser?.visitedCities,
+      wishCities: updatedUser?.wishCities,
+    });
   } catch (error) {
-    console.log("getUserData error -->", error);
+    console.log("UPDATE USER error -->", error);
   }
 };
 
-export const getUserData = async (
+export const getUserLists = async (
   req: Request,
   res: Response
 ): Promise<void> => {
@@ -33,7 +37,13 @@ export const getUserData = async (
       return;
     }
 
-    res.json({ status: "success", user });
+    res.json({
+      status: "success",
+      userLists: {
+        wishCities: user.wishCities,
+        visitedCities: user.visitedCities,
+      },
+    });
   } catch (error) {
     console.log("getUserData error -->", error);
   }

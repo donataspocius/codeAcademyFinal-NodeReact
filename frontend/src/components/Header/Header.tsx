@@ -4,8 +4,8 @@ import styles from "./Header.module.css";
 import logo from "../../imgs/Go.svg";
 import Button from "../Button/Button";
 import { useSelector, useDispatch } from "react-redux";
-import { AuthState } from "../../redux/interfaces";
 import { updateAuthToken, updateUserId } from "../../redux/auth/authSlice";
+import { resetUserState } from "../../redux/content/contentSlice";
 import { selectAuthToken } from "../../redux/auth/authSlice";
 
 const Header = () => {
@@ -17,6 +17,7 @@ const Header = () => {
   const handleLogout = () => {
     dispatch(updateAuthToken(""));
     dispatch(updateUserId(""));
+    dispatch(resetUserState());
   };
 
   return (

@@ -9,7 +9,6 @@ interface coordsProps {
 }
 
 const Map = ({ coords }: any) => {
-  console.log("coords in Map -->", coords);
   const [latLong, setLatLong] = useState<[number, number]>(coords);
 
   return (

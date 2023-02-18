@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addToVisitedCities,
+  addToWishCities,
   selectAllCities,
 } from "../../redux/content/contentSlice";
 import styles from "./CityInfoModal.module.css";
@@ -60,7 +61,7 @@ const CityInfoModal = ({ id, setModal }: ModalProps) => {
   };
 
   const handleAddToWish = () => {
-    console.log("add to wish clicked");
+    dispatch(addToWishCities(cityData?.id!));
   };
 
   return (

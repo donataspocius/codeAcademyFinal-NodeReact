@@ -9,12 +9,16 @@ import {
   getCountryData,
   getCitiesList,
 } from "./controllers/content.controller";
-import { getUserData, updateUserData } from "./controllers/user.controller";
+import {
+  // getUserData,
+  getUserLists,
+  updateUserData,
+} from "./controllers/user.controller";
 
 dotenv.config();
 
 const app: Application = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 7000;
 
 // MIDDLEWARES
 app.use(express.json()); // use JSON
@@ -31,7 +35,8 @@ app.post("/auth/login", loginUser);
 
 // --- USER ENPOINTS
 // GET user data FOR DEVELOPMENT ONLY
-app.get("/user/:userId", authenticateToken, getUserData);
+app.get("/user/:userId", getUserLists);
+// app.get("/user/:userId", authenticateToken, getUserData);
 
 // UPDATE user visited/wish lists
 app.put("/user/:userId", updateUserData);
