@@ -37,8 +37,10 @@ export const fetchCountryCities = createAsyncThunk(
 );
 
 interface initializeStateAction {
-  visitedCities: string[];
-  wishCities: string[];
+  userLists: {
+    visitedCities: string[];
+    wishCities: string[];
+  };
 }
 
 export const contentSlice = createSlice({
@@ -50,8 +52,8 @@ export const contentSlice = createSlice({
       // action: PayloadAction<[string[], string[]]>
       action: PayloadAction<initializeStateAction>
     ) => {
-      state.visitedCities = action.payload.visitedCities;
-      state.wishCities = action.payload.wishCities;
+      state.visitedCities = action.payload.userLists.visitedCities;
+      state.wishCities = action.payload.userLists.wishCities;
     },
     addToVisitedCities: (state, action: PayloadAction<string>) => {
       state.visitedCities.push(action.payload);

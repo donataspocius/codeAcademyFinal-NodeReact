@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getToken } from "../../utils/functions";
+import { getToken, getUserLists } from "../../utils/functions";
 import UserExperience from "./UserExperience/UserExperience";
 import styles from "./Subscribe.module.css";
 import UserInfo from "./UserInfo/UserInfo";
 import { API } from "../../constants";
 import { updateAuthToken, updateUserId } from "../../redux/auth/authSlice";
+import { initializeContentState } from "../../redux/content/contentSlice";
 
 interface State {
   authToken: string;
@@ -37,12 +38,12 @@ const Subscribe = () => {
     });
   };
 
-  // const onClick = async (e: React.MouseEvent) => {
   const onClick = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const responseData = await getToken(API.signup, userInfo);
+
     if (responseData.authToken && responseData.userId) {
-      //dispatch action to set token
       dispatch(updateAuthToken(responseData.authToken));
       dispatch(updateUserId(responseData.userId));
       navigate("/user-content/explore", { replace: true });

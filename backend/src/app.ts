@@ -10,9 +10,9 @@ import {
   getCitiesList,
 } from "./controllers/content.controller";
 import {
-  // getUserData,
   getUserLists,
   updateUserData,
+  getUserVisitedCities,
 } from "./controllers/user.controller";
 
 dotenv.config();
@@ -37,6 +37,8 @@ app.post("/auth/login", loginUser);
 // GET user data FOR DEVELOPMENT ONLY
 app.get("/user/:userId", getUserLists);
 // app.get("/user/:userId", authenticateToken, getUserData);
+
+app.get("/user/visitedCities/:userId", getUserVisitedCities);
 
 // UPDATE user visited/wish lists
 app.put("/user/:userId", updateUserData);

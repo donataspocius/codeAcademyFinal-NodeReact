@@ -14,7 +14,6 @@ const databaseStorage =
   ({ getState }: MiddlewareAPI) =>
   (next: Dispatch) =>
   (action: Action) => {
-    // const userId = useSelector(selectUserId);
     next(action);
 
     let currentState = getState();

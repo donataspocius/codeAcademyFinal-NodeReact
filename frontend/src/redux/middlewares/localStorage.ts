@@ -25,6 +25,7 @@ const localStorage =
         };
         const currUserId = userId(currentState);
         window.localStorage.setItem(USER_ID_STORAGE_KEY, currUserId);
+        break;
       default:
         break;
     }
