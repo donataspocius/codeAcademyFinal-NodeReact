@@ -19,7 +19,47 @@ import CityCard from "../../../components/CityCard/CityCard";
 const WantToGo = () => {
   const dispatch = useDispatch<AppDispatch>();
 
+  const userId = useSelector(selectUserId);
+  const wishCitiesData = useSelector(selectWishCitiesData);
   const wishCities = useSelector(selectWishCities);
+  const status = useSelector(selectContentStatus);
+  const error = useSelector(selectContentError);
+
+  // useEffect(() => {
+  //   dispatch(
+  //     fetchCountryCities({
+  //       apiAddress: API.userWishCities(userId),
+  //       type: "wishCities",
+  //     })
+  //   );
+  // }, [wishCities]);
+
+  // let content;
+  // switch (status) {
+  //   case "loading":
+  //     content = (
+  //       <div className={styles.loaderContainer}>
+  //         <DotLoader color="rgb(37, 150, 190)" />
+  //       </div>
+  //     );
+  //     break;
+  //   case "succeeded":
+  //   case "failed":
+  //     content = wishCitiesData.map((city) => {
+  //       return (
+  //         <CityCard
+  //           key={city.id}
+  //           id={city.id}
+  //           name={city.name}
+  //           photoUrl={city.photoUrl}
+  //           context="wishCities"
+  //         />
+  //       );
+  //     });
+  //     break;
+  //   default:
+  //     break;
+  // }
 
   let content = wishCities.map((city) => {
     return (

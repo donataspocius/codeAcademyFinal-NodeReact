@@ -60,7 +60,6 @@ const BeenThere = () => {
   // }
 
   let content = visitedCities.map((city) => {
-    // ---> content = visitedCitiesData.map((city) => {
     return (
       <CityCard
         key={city.id}

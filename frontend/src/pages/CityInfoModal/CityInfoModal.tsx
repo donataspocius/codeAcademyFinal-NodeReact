@@ -4,8 +4,7 @@ import {
   addToVisitedCities,
   addToWishCities,
   selectAllCities,
-  selectVisitedCitiesData,
-  selectWishCitiesData,
+  selectWishCities,
   selectVisitedCities,
 } from "../../redux/content/contentSlice";
 import styles from "./CityInfoModal.module.css";
@@ -29,16 +28,25 @@ const CityInfoModal = ({ id, setModal, context }: ModalProps) => {
   const [cityData, setCityData] = useState<CityData>();
 
   const cities = useSelector(selectAllCities);
-  const wishCities = useSelector(selectWishCitiesData);
+  const wishCities = useSelector(selectWishCities);
   const visitedCities = useSelector(selectVisitedCities);
   const authenticated = useSelector(selectAuthToken);
   const dispatch = useDispatch();
 
   let CityDataInState: CityData[];
+  let disableVisitedBtn: boolean = true;
+  let disableWishBtn: boolean = true;
 
   switch (context) {
     case "cities":
       CityDataInState = cities.filter((city) => city.id === id);
+      const isInVisited = visitedCities.filter((city) => city.id === id);
+      const isInWish = wishCities.filter((city) => city.id === id);
+
+      !isInVisited.length
+        ? (disableVisitedBtn = false)
+        : (disableVisitedBtn = true);
+      !isInWish.length ? (disableWishBtn = false) : (disableWishBtn = true);
       break;
     case "visitedCities":
       CityDataInState = visitedCities.filter((city) => city.id === id);
@@ -155,13 +163,13 @@ const CityInfoModal = ({ id, setModal, context }: ModalProps) => {
                   {Boolean(authenticated) && (
                     <div className={styles.buttonsContainer}>
                       <Button
-                        disabled={!Boolean(authenticated)}
+                        disabled={disableVisitedBtn}
                         onClick={handleAddToVisited}
                       >
                         Been There
                       </Button>
                       <Button
-                        disabled={!Boolean(authenticated)}
+                        disabled={disableWishBtn}
                         onClick={handleAddToWish}
                       >
                         Want to Go
