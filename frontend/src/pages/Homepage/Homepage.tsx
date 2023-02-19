@@ -27,7 +27,7 @@ const Homepage = () => {
   }
 
   useEffect(() => {
-    if (status === "idle") {
+    if (status === "idle" || !cities) {
       dispatch(
         fetchCountryCities({
           apiAddress: API.countryCities("united-states"),

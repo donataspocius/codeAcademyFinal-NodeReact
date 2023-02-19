@@ -23,14 +23,14 @@ const BeenThere = () => {
   const status = useSelector(selectContentStatus);
   const error = useSelector(selectContentError);
 
-  // useEffect(() => {
-  //   dispatch(
-  //     fetchCountryCities({
-  //       apiAddress: API.userVisitedCities(userId),
-  //       type: "visitedCities",
-  //     })
-  //   );
-  // }, []);
+  useEffect(() => {
+    dispatch(
+      fetchCountryCities({
+        apiAddress: API.userVisitedCities(userId),
+        type: "visitedCities",
+      })
+    );
+  }, []);
 
   let content;
   switch (status) {
