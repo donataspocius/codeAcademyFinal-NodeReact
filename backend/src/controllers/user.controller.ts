@@ -70,11 +70,8 @@ export const updateUserData = async (
   const newUserData = req.body;
 
   try {
-    const userData = await User.findById(id);
-    console.log("BEFORE UPDATE", userData);
     await User.findByIdAndUpdate(id, newUserData);
     const updatedUser = await User.findById(id);
-    console.log("AFTER UPDATE", updatedUser);
 
     res.json({
       status: "success",

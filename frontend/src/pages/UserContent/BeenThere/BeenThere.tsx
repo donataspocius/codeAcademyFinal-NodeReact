@@ -23,40 +23,53 @@ const BeenThere = () => {
   const status = useSelector(selectContentStatus);
   const error = useSelector(selectContentError);
 
-  useEffect(() => {
-    dispatch(
-      fetchCountryCities({
-        apiAddress: API.userVisitedCities(userId),
-        type: "visitedCities",
-      })
-    );
-  }, []);
+  // useEffect(() => {
+  //   dispatch(
+  //     fetchCountryCities({
+  //       apiAddress: API.userVisitedCities(userId),
+  //       type: "visitedCities",
+  //     })
+  //   );
+  // }, []);
 
-  let content;
-  switch (status) {
-    case "loading":
-      content = (
-        <div className={styles.loaderContainer}>
-          <DotLoader color="rgb(37, 150, 190)" />
-        </div>
-      );
-      break;
-    case "succeeded":
-    case "failed":
-      content = visitedCitiesData.map((city) => {
-        return (
-          <CityCard
-            key={city.id}
-            id={city.id}
-            name={city.name}
-            photoUrl={city.photoUrl}
-          />
-        );
-      });
-      break;
-    default:
-      break;
-  }
+  // let content;
+  // switch (status) {
+  //   case "loading":
+  //     content = (
+  //       <div className={styles.loaderContainer}>
+  //         <DotLoader color="rgb(37, 150, 190)" />
+  //       </div>
+  //     );
+  //     break;
+  //   case "succeeded":
+  //   case "failed":
+  //     content = visitedCities.map((city) => {
+  //       // ---> content = visitedCitiesData.map((city) => {
+  //       return (
+  //         <CityCard
+  //           key={city.id}
+  //           id={city.id}
+  //           name={city.name}
+  //           photoUrl={city.photoUrl}
+  //         />
+  //       );
+  //     });
+  //     break;
+  //   default:
+  //     break;
+  // }
+
+  let content = visitedCities.map((city) => {
+    // ---> content = visitedCitiesData.map((city) => {
+    return (
+      <CityCard
+        key={city.id}
+        id={city.id}
+        name={city.name}
+        photoUrl={city.photoUrl}
+      />
+    );
+  });
 
   return (
     <>

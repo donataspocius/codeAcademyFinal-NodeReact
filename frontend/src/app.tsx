@@ -7,7 +7,26 @@ import Login from "./pages/Login/Login.tsx";
 import Subscribe from "./pages/Subscribe/Subscribe";
 import UserContent from "./pages/UserContent/UserContent";
 
+import { useDispatch, useSelector } from "react-redux";
+import { getUserLists } from "./utils/functions";
+import { API } from "./constants";
+import { selectUserId } from "./redux/auth/authSlice";
+import { initializeContentState } from "./redux/content/contentSlice";
+
 function App() {
+  const dispatch = useDispatch();
+  const userId = useSelector(selectUserId);
+
+  if (userId) {
+    // function to get user data from database
+    const getLists = async () => {
+      const lists = async () => await getUserLists(API.updateUser(userId));
+      const userLists = await lists();
+      dispatch(initializeContentState(userLists));
+    };
+    getLists();
+  }
+
   return (
     <BrowserRouter>
       <Layout>

@@ -4,7 +4,8 @@ import { RootState } from "../store";
 
 interface ContentState {
   cities: CityData[];
-  visitedCities: string[];
+  visitedCities: CityData[];
+  // ---> visitedCities: string[];
   visitedCitiesData: CityData[];
   wishCities: string[];
   wishCitiesData: CityData[];
@@ -48,7 +49,8 @@ export const fetchCountryCities = createAsyncThunk(
 
 interface initializeStateAction {
   userLists: {
-    visitedCities: string[];
+    visitedCities: CityData[];
+    // ---> visitedCities: string[];
     wishCities: string[];
   };
 }
@@ -65,7 +67,8 @@ export const contentSlice = createSlice({
       state.visitedCities = action.payload.userLists.visitedCities;
       state.wishCities = action.payload.userLists.wishCities;
     },
-    addToVisitedCities: (state, action: PayloadAction<string>) => {
+    addToVisitedCities: (state, action: PayloadAction<CityData>) => {
+      // ---> addToVisitedCities: (state, action: PayloadAction<string>) => {
       state.visitedCities.push(action.payload);
     },
     addToWishCities: (state, action: PayloadAction<string>) => {

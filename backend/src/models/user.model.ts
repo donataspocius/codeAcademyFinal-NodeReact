@@ -18,7 +18,8 @@ const userSchema = new mongoose.Schema({
     // select: false,
   },
   userProfile: String,
-  visitedCities: [String],
+  visitedCities: [],
+  // ---> visitedCities: [String],
   wishCities: [String],
 });
 

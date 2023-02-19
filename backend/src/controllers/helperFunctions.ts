@@ -4,7 +4,6 @@ export const getCitiesIdList = async (
   countryName: string
 ): Promise<number[] | undefined> => {
   try {
-    console.log("getCitiesIdLIst runs");
     // fetching data
     let apiData = await getApiData(countryName);
 

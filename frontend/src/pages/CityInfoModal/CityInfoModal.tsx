@@ -6,6 +6,7 @@ import {
   selectAllCities,
   selectVisitedCitiesData,
   selectWishCitiesData,
+  selectVisitedCities,
 } from "../../redux/content/contentSlice";
 import styles from "./CityInfoModal.module.css";
 import { CityData } from "../../redux/interfaces";
@@ -28,14 +29,19 @@ const CityInfoModal = ({ id, setModal }: ModalProps) => {
 
   const cities = useSelector(selectAllCities);
   const wishCities = useSelector(selectWishCitiesData);
-  const visitedCities = useSelector(selectVisitedCitiesData);
+  const visitedCities = useSelector(selectVisitedCities);
+  // const visitedCities = useSelector(selectVisitedCitiesData);
   const authenticated = useSelector(selectAuthToken);
   const dispatch = useDispatch();
 
-  const CityDataInState = cities.filter((city) => city.id === id);
+  const CityDataInState =
+    cities.filter((city) => city.id === id) ||
+    visitedCities.filter((city) => city.id === id) ||
+    wishCities.filter((city) => city.id === id);
 
   //   TO-DO
   if (!CityDataInState) {
+    console.log("not working");
   }
 
   useEffect(() => {
@@ -65,7 +71,8 @@ const CityInfoModal = ({ id, setModal }: ModalProps) => {
   const handleAddToVisited = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setModal(false);
-    dispatch(addToVisitedCities(cityData?.id!));
+    dispatch(addToVisitedCities(cityData!));
+    // ---> dispatch(addToVisitedCities(cityData?.id!));
   };
 
   const handleAddToWish = (e: React.MouseEvent<HTMLElement>) => {
