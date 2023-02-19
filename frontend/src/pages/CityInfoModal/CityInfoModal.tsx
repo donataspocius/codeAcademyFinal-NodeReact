@@ -63,11 +63,13 @@ const CityInfoModal = ({ id, setModal }: ModalProps) => {
   ];
 
   const handleAddToVisited = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
     setModal(false);
     dispatch(addToVisitedCities(cityData?.id!));
   };
 
   const handleAddToWish = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
     setModal(false);
     dispatch(addToWishCities(cityData?.id!));
   };
@@ -131,20 +133,27 @@ const CityInfoModal = ({ id, setModal }: ModalProps) => {
                       Plan a City Tour&nbsp;
                     </div>
                   </div>
-                  <div className={styles.buttonsContainer}>
-                    <Button
-                      disabled={!Boolean(authenticated)}
-                      onClick={handleAddToVisited}
-                    >
-                      Been There
-                    </Button>
-                    <Button
-                      disabled={!Boolean(authenticated)}
-                      onClick={handleAddToWish}
-                    >
-                      Want to Go
-                    </Button>
-                  </div>
+                  {!Boolean(authenticated) && (
+                    <div className={styles.messageDiv}>
+                      Please login to manage your cities
+                    </div>
+                  )}
+                  {Boolean(authenticated) && (
+                    <div className={styles.buttonsContainer}>
+                      <Button
+                        disabled={!Boolean(authenticated)}
+                        onClick={handleAddToVisited}
+                      >
+                        Been There
+                      </Button>
+                      <Button
+                        disabled={!Boolean(authenticated)}
+                        onClick={handleAddToWish}
+                      >
+                        Want to Go
+                      </Button>
+                    </div>
+                  )}
                 </div>
               </div>
               <Map coords={coords} />

@@ -36,7 +36,7 @@ const Homepage = () => {
       );
       // dispatch(fetchCountryCities(API.countryCities("united-states")));
     }
-  }, [status, dispatch]);
+  }, [status, dispatch, cities]);
 
   let content;
   switch (status) {
