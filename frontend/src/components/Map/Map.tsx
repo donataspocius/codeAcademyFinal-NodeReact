@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet/dist/images/marker-shadow.png";
 import styles from "./Map.module.css";
-
-interface coordsProps {
-  coords: [number, number];
-}
 
 const Map = ({ coords }: any) => {
   const [latLong, setLatLong] = useState<[number, number]>(coords);

@@ -7,7 +7,6 @@ import Input from "../../../components/Input/Input";
 
 interface UserInfo {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  // onClick: React.MouseEventHandler<Element>;
   onClick: React.FormEventHandler<HTMLFormElement>;
 }
 

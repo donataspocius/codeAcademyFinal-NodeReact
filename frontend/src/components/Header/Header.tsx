@@ -11,7 +11,6 @@ import { selectAuthToken } from "../../redux/auth/authSlice";
 const Header = () => {
   const dispatch = useDispatch();
 
-  // const authToken = useSelector((state: AuthState) => state.auth.authToken);
   const authToken = useSelector(selectAuthToken);
 
   const handleLogout = () => {

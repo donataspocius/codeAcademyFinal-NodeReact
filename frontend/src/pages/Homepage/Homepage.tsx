@@ -7,7 +7,6 @@ import { AppDispatch } from "../../redux/store";
 import { API } from "../../constants";
 import {
   selectAllCities,
-  selectContentError,
   selectContentStatus,
   fetchCountryCities,
 } from "../../redux/content/contentSlice";
@@ -19,12 +18,6 @@ const Homepage = () => {
 
   const cities = useSelector(selectAllCities);
   const status = useSelector(selectContentStatus);
-  const error = useSelector(selectContentError);
-  const userId = useSelector(selectUserId);
-
-  interface Event {
-    onClick: (e: React.MouseEvent<HTMLElement>) => void;
-  }
 
   useEffect(() => {
     if (status === "idle" || !cities) {
@@ -34,7 +27,6 @@ const Homepage = () => {
           type: "country",
         })
       );
-      // dispatch(fetchCountryCities(API.countryCities("united-states")));
     }
   }, [status, dispatch, cities]);
 

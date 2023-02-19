@@ -41,7 +41,6 @@ const Explore = () => {
           type: "wishCities",
         })
       );
-      // dispatch(fetchCountryCities(API.countryCities("united-states")));
     }
   }, [status, dispatch]);
 

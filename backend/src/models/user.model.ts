@@ -15,11 +15,9 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "Please provide a password"],
-    // select: false,
   },
   userProfile: String,
   visitedCities: [],
-  // ---> visitedCities: [String],
   wishCities: [],
 });
 

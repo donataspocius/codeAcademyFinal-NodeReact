@@ -1,4 +1,3 @@
-import { AUTH_TOKEN_STORAGE_KEY } from "../constants";
 import { CityData } from "../redux/interfaces";
 
 interface GetTokenProps {
@@ -27,7 +26,6 @@ export const getToken = async (apiAddress: string, body: GetTokenProps) => {
 export const updateUserVisitedCities = async (
   apiAddress: string,
   visitedCities: CityData[]
-  // ---> visitedCities: string[]
 ) => {
   try {
     const fetchData = await fetch(apiAddress, {

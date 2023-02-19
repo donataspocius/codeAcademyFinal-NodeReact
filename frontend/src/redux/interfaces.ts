@@ -8,13 +8,6 @@ export interface ContentState {
   loading: boolean;
   error: boolean;
 }
-
-// export interface CityData {
-//   id: string;
-//   name: string;
-//   photoUrl: string;
-// }
-
 export interface CityData {
   id: string;
   name: string;

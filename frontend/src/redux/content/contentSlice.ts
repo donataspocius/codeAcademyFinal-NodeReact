@@ -5,11 +5,7 @@ import { RootState } from "../store";
 interface ContentState {
   cities: CityData[];
   visitedCities: CityData[];
-  // ---> visitedCities: string[];
-  visitedCitiesData: CityData[];
-  // wishCities: string[];
   wishCities: CityData[];
-  wishCitiesData: CityData[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | undefined;
 }
@@ -17,9 +13,7 @@ interface ContentState {
 const initialState: ContentState = {
   cities: [],
   visitedCities: [],
-  visitedCitiesData: [],
   wishCities: [],
-  wishCitiesData: [],
   status: "idle",
   error: undefined,
 };
@@ -32,7 +26,6 @@ interface APIRequestType {
 export const fetchCountryCities = createAsyncThunk(
   "content/getCountryCities",
   async ({ apiAddress, type }: APIRequestType) => {
-    // async (apiAddress: string) => {
     // no more try/catch block needed
     const fetchData = await fetch(apiAddress, {
       method: "GET",
@@ -51,9 +44,7 @@ export const fetchCountryCities = createAsyncThunk(
 interface initializeStateAction {
   userLists: {
     visitedCities: CityData[];
-    // ---> visitedCities: string[];
     wishCities: CityData[];
-    // wishCities: string[];
   };
 }
 
@@ -63,14 +54,12 @@ export const contentSlice = createSlice({
   reducers: {
     initializeContentState: (
       state,
-      // action: PayloadAction<[string[], string[]]>
       action: PayloadAction<initializeStateAction>
     ) => {
       state.visitedCities = action.payload.userLists.visitedCities;
       state.wishCities = action.payload.userLists.wishCities;
     },
     addToVisitedCities: (state, action: PayloadAction<CityData>) => {
-      // ---> addToVisitedCities: (state, action: PayloadAction<string>) => {
       state.visitedCities.push(action.payload);
     },
     addToWishCities: (state, action: PayloadAction<CityData>) => {
@@ -91,9 +80,9 @@ export const contentSlice = createSlice({
         if (action.payload.type === "country") {
           state.cities = action.payload.result;
         } else if (action.payload.type === "visitedCities") {
-          state.visitedCitiesData = action.payload.result;
+          // state.visitedCitiesData = action.payload.result;
         } else if (action.payload.type === "wishCities") {
-          state.wishCitiesData = action.payload.result;
+          // state.wishCitiesData = action.payload.result;
         }
       })
       .addCase(fetchCountryCities.rejected, (state, action) => {
@@ -107,11 +96,7 @@ export const contentSlice = createSlice({
 export const selectAllCities = (state: RootState) => state.content.cities;
 export const selectVisitedCities = (state: RootState) =>
   state.content.visitedCities;
-export const selectVisitedCitiesData = (state: RootState) =>
-  state.content.visitedCitiesData;
 export const selectWishCities = (state: RootState) => state.content.wishCities;
-export const selectWishCitiesData = (state: RootState) =>
-  state.content.wishCitiesData;
 export const selectContentStatus = (state: RootState) => state.content.status;
 export const selectContentError = (state: RootState) => state.content.error;
 

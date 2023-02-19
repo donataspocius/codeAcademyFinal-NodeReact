@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./Login.module.css";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
-import { getToken, getUserLists } from "../../utils/functions";
+import { getToken } from "../../utils/functions";
 import { API } from "../../constants";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateAuthToken, updateUserId } from "../../redux/auth/authSlice";
-// import { initializeContentState } from "../../redux/content/contentSlice";
 
 const Login = () => {
   const [userData, setUserData] = useState({});
@@ -31,13 +30,6 @@ const Login = () => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // function to get user data from database
-    // const getLists = async () => {
-    //   const lists = async () => await getUserLists(API.updateUser(userId));
-    //   const userLists = await lists();
-    //   dispatch(initializeContentState(userLists));
-    // };
-
     const getLoginCredentials = await getToken(API.login, userData);
     const token = getLoginCredentials.accessToken;
     userId = getLoginCredentials.userId;
@@ -46,16 +38,11 @@ const Login = () => {
       setInputCorrect(true);
       dispatch(updateAuthToken(token));
       dispatch(updateUserId(userId));
-      // getLists();
       navigate("/user-content/explore", { replace: true });
     }
 
     setInputCorrect(false);
-
-    // e.target.reset();
   };
-
-  // getting users data from database
 
   return (
     <div className={styles.loginMain}>

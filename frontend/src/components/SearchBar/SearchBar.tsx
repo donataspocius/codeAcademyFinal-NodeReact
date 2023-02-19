@@ -19,14 +19,12 @@ const SearchBar = () => {
     if (inputRef.current) {
       inputRef.current.value = "";
     }
-    // dispatch an action to change cities state
     dispatch(
       fetchCountryCities({
         apiAddress: API.countryCities(searchInput),
         type: "country",
       })
     );
-    // dispatch(fetchCountryCities(API.countryCities(searchInput)));
     navigate("explore");
   };
 

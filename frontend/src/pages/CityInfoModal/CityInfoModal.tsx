@@ -86,14 +86,12 @@ const CityInfoModal = ({ id, setModal, context }: ModalProps) => {
     e.stopPropagation();
     setModal(false);
     dispatch(addToVisitedCities(cityData!));
-    // ---> dispatch(addToVisitedCities(cityData?.id!));
   };
 
   const handleAddToWish = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setModal(false);
     dispatch(addToWishCities(cityData!));
-    // dispatch(addToWishCities(cityData?.id!));
   };
 
   return (

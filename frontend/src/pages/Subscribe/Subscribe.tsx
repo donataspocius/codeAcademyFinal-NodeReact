@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { getToken, getUserLists } from "../../utils/functions";
+import { getToken } from "../../utils/functions";
 import UserExperience from "./UserExperience/UserExperience";
 import styles from "./Subscribe.module.css";
 import UserInfo from "./UserInfo/UserInfo";
 import { API } from "../../constants";
 import { updateAuthToken, updateUserId } from "../../redux/auth/authSlice";
-// import { initializeContentState } from "../../redux/content/contentSlice";
 
-interface State {
-  authToken: string;
-}
 interface InputData {
   name: string;
   value: string;
@@ -25,7 +21,6 @@ const Subscribe = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const authToken = useSelector((state: State) => state.authToken);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value, type, checked }: InputData =
