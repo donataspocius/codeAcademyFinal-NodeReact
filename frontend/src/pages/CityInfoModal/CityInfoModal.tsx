@@ -22,26 +22,32 @@ import { selectAuthToken } from "../../redux/auth/authSlice";
 interface ModalProps {
   id: string;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  context: "cities" | "wishCities" | "visitedCities";
 }
 
-const CityInfoModal = ({ id, setModal }: ModalProps) => {
+const CityInfoModal = ({ id, setModal, context }: ModalProps) => {
   const [cityData, setCityData] = useState<CityData>();
 
   const cities = useSelector(selectAllCities);
   const wishCities = useSelector(selectWishCitiesData);
   const visitedCities = useSelector(selectVisitedCities);
-  // const visitedCities = useSelector(selectVisitedCitiesData);
   const authenticated = useSelector(selectAuthToken);
   const dispatch = useDispatch();
 
-  const CityDataInState =
-    cities.filter((city) => city.id === id) ||
-    visitedCities.filter((city) => city.id === id) ||
-    wishCities.filter((city) => city.id === id);
+  let CityDataInState: CityData[];
 
-  //   TO-DO
-  if (!CityDataInState) {
-    console.log("not working");
+  switch (context) {
+    case "cities":
+      CityDataInState = cities.filter((city) => city.id === id);
+      break;
+    case "visitedCities":
+      CityDataInState = visitedCities.filter((city) => city.id === id);
+      break;
+    case "wishCities":
+      CityDataInState = wishCities.filter((city) => city.id === id);
+      break;
+    default:
+      break;
   }
 
   useEffect(() => {
@@ -78,7 +84,8 @@ const CityInfoModal = ({ id, setModal }: ModalProps) => {
   const handleAddToWish = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setModal(false);
-    dispatch(addToWishCities(cityData?.id!));
+    dispatch(addToWishCities(cityData!));
+    // dispatch(addToWishCities(cityData?.id!));
   };
 
   return (

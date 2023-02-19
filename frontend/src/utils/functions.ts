@@ -46,7 +46,7 @@ export const updateUserVisitedCities = async (
 
 export const updateUserWishCities = async (
   apiAddress: string,
-  wishCities: string[]
+  wishCities: CityData[]
 ) => {
   try {
     const fetchData = await fetch(apiAddress, {

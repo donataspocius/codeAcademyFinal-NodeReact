@@ -7,7 +7,8 @@ interface ContentState {
   visitedCities: CityData[];
   // ---> visitedCities: string[];
   visitedCitiesData: CityData[];
-  wishCities: string[];
+  // wishCities: string[];
+  wishCities: CityData[];
   wishCitiesData: CityData[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | undefined;
@@ -51,7 +52,8 @@ interface initializeStateAction {
   userLists: {
     visitedCities: CityData[];
     // ---> visitedCities: string[];
-    wishCities: string[];
+    wishCities: CityData[];
+    // wishCities: string[];
   };
 }
 
@@ -71,7 +73,7 @@ export const contentSlice = createSlice({
       // ---> addToVisitedCities: (state, action: PayloadAction<string>) => {
       state.visitedCities.push(action.payload);
     },
-    addToWishCities: (state, action: PayloadAction<string>) => {
+    addToWishCities: (state, action: PayloadAction<CityData>) => {
       state.wishCities.push(action.payload);
     },
     resetUserState: (state) => {

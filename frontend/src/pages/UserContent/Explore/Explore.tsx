@@ -63,6 +63,7 @@ const Explore = () => {
               id={city.id}
               name={city.name}
               photoUrl={city.photoUrl}
+              context="cities"
             />
           );
         });

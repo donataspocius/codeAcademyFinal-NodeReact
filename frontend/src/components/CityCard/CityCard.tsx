@@ -7,8 +7,9 @@ interface CityData {
   id: string;
   name: string;
   photoUrl: string;
+  context: "cities" | "wishCities" | "visitedCities";
 }
-const CityCard = ({ name, photoUrl, id }: CityData) => {
+const CityCard = ({ name, photoUrl, id, context }: CityData) => {
   const [modal, setModal] = useState(false);
 
   const onClick = () => {
@@ -23,7 +24,7 @@ const CityCard = ({ name, photoUrl, id }: CityData) => {
       <h1 className={styles.header}>{name}</h1>
       {modal &&
         createPortal(
-          <CityInfoModal id={id} setModal={setModal} />,
+          <CityInfoModal id={id} setModal={setModal} context={context} />,
           document.getElementById("root")!
         )}
     </div>

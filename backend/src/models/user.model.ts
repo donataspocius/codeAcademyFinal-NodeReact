@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   userProfile: String,
   visitedCities: [],
   // ---> visitedCities: [String],
-  wishCities: [String],
+  wishCities: [],
 });
 
 const User = mongoose.model("user", userSchema);

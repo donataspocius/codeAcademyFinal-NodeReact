@@ -67,12 +67,16 @@ const BeenThere = () => {
         id={city.id}
         name={city.name}
         photoUrl={city.photoUrl}
+        context="visitedCities"
       />
     );
   });
 
   return (
     <>
+      {!content.length && (
+        <div className={styles.infoText}>No cities visited yet!</div>
+      )}
       <div className={styles.cardsContainer}>{content}</div>
     </>
   );

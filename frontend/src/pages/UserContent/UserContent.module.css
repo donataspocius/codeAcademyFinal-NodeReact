@@ -56,3 +56,11 @@
   height: 150px;
   width: 150px;
 }
+
+.infoText {
+  font-size: 23px;
+  font-weight: 700;
+  color: var(--greyBlue);
+  text-align: center;
+  margin-top: 10vh;
+}

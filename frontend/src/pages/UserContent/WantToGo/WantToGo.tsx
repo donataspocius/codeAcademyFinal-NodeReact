@@ -25,43 +25,60 @@ const WantToGo = () => {
   const status = useSelector(selectContentStatus);
   const error = useSelector(selectContentError);
 
-  useEffect(() => {
-    dispatch(
-      fetchCountryCities({
-        apiAddress: API.userWishCities(userId),
-        type: "wishCities",
-      })
-    );
-  }, [wishCities]);
+  // useEffect(() => {
+  //   dispatch(
+  //     fetchCountryCities({
+  //       apiAddress: API.userWishCities(userId),
+  //       type: "wishCities",
+  //     })
+  //   );
+  // }, [wishCities]);
 
-  let content;
-  switch (status) {
-    case "loading":
-      content = (
-        <div className={styles.loaderContainer}>
-          <DotLoader color="rgb(37, 150, 190)" />
-        </div>
-      );
-      break;
-    case "succeeded":
-    case "failed":
-      content = wishCitiesData.map((city) => {
-        return (
-          <CityCard
-            key={city.id}
-            id={city.id}
-            name={city.name}
-            photoUrl={city.photoUrl}
-          />
-        );
-      });
-      break;
-    default:
-      break;
-  }
+  // let content;
+  // switch (status) {
+  //   case "loading":
+  //     content = (
+  //       <div className={styles.loaderContainer}>
+  //         <DotLoader color="rgb(37, 150, 190)" />
+  //       </div>
+  //     );
+  //     break;
+  //   case "succeeded":
+  //   case "failed":
+  //     content = wishCitiesData.map((city) => {
+  //       return (
+  //         <CityCard
+  //           key={city.id}
+  //           id={city.id}
+  //           name={city.name}
+  //           photoUrl={city.photoUrl}
+  //           context="wishCities"
+  //         />
+  //       );
+  //     });
+  //     break;
+  //   default:
+  //     break;
+  // }
+
+  let content = wishCities.map((city) => {
+    // ---> content = visitedCitiesData.map((city) => {
+    return (
+      <CityCard
+        key={city.id}
+        id={city.id}
+        name={city.name}
+        photoUrl={city.photoUrl}
+        context="wishCities"
+      />
+    );
+  });
 
   return (
     <>
+      {!content.length && (
+        <div className={styles.infoText}>No cities in your wish list</div>
+      )}
       <div className={styles.cardsContainer}>{content}</div>
     </>
   );
