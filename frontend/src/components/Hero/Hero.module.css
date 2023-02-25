@@ -1,30 +1,30 @@
 .heroBanner {
-    min-height: 490px;
-    background-image: url("../../imgs/hero3.jpg");
-    background-size: cover;
-    display: flex;
-    flex-shrink: 0;
-  }
-  
-  .heroBannerContent {
-    margin: auto;
-    /* display: flex;
+  min-height: 490px;
+  /* background-image: url("../../imgs/hero3.jpg"); */
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfDkB56h19iRoQcl6Za0dSpqZvOfXNO295lPdvEtfPqA&s");
+  background-size: cover;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.heroBannerContent {
+  margin: auto;
+  /* display: flex;
     flex-direction: column; */
-  }
-  
-  .heroBanner h1 {
-    font-size: 48px;
-    font-weight: 700;
-    margin-bottom: 29px;
-    color: white;
-  }
+}
 
-  .heroBannerContent {
-    text-align: center;
+.heroBanner h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 29px;
+  color: white;
+}
 
-  }
-  
-  /* .heroBannerContent button {
+.heroBannerContent {
+  text-align: center;
+}
+
+/* .heroBannerContent button {
     display: block;
     margin: auto;
   }
