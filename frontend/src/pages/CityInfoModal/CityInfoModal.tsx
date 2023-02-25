@@ -9,10 +9,10 @@ import {
 } from "../../redux/content/contentSlice";
 import styles from "./CityInfoModal.module.css";
 import { CityData } from "../../redux/interfaces";
-import { IoIosPeople } from "react-icons/Io";
-import { BsFillPersonCheckFill } from "react-icons/Bs";
-import { AiFillStar, AiFillCar } from "react-icons/Ai";
-import { FaAirbnb, FaCity } from "react-icons/Fa";
+import { IoIosPeople } from "react-icons/io";
+import { BsFillPersonCheckFill } from "react-icons/bs";
+import { AiFillStar, AiFillCar } from "react-icons/ai";
+import { FaAirbnb, FaCity } from "react-icons/fa";
 import Button from "../../components/Button/Button";
 import Map from "../../components/Map/Map";
 import { RiCloseLine } from "react-icons/ri";
