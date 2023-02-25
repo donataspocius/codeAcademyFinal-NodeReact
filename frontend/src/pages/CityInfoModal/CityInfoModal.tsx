@@ -27,11 +27,11 @@ interface ModalProps {
 const CityInfoModal = ({ id, setModal, context }: ModalProps) => {
   const [cityData, setCityData] = useState<CityData>();
 
+  const dispatch = useDispatch();
   const cities = useSelector(selectAllCities);
   const wishCities = useSelector(selectWishCities);
   const visitedCities = useSelector(selectVisitedCities);
   const authenticated = useSelector(selectAuthToken);
-  const dispatch = useDispatch();
 
   let CityDataInState: CityData[];
   let disableVisitedBtn: boolean = true;
