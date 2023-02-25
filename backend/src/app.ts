@@ -36,7 +36,7 @@ app.post("/auth/login", loginUser);
 
 // --- USER ENPOINTS
 // GET user data FOR DEVELOPMENT ONLY
-app.get("/user/:userId", getUserLists);
+app.get("/user/:userId", authenticateToken, getUserLists);
 // app.get("/user/:userId", authenticateToken, getUserData);
 
 // GET user visited cities data

@@ -10,17 +10,20 @@ import UserContent from "./pages/UserContent/UserContent";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserLists } from "./utils/functions";
 import { API } from "./constants";
-import { selectUserId } from "./redux/auth/authSlice";
+import { selectAuthToken, selectUserId } from "./redux/auth/authSlice";
 import { initializeContentState } from "./redux/content/contentSlice";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 function App() {
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
+  const authToken = useSelector(selectAuthToken);
 
   if (userId) {
     // function to get user data from database
     const getLists = async () => {
-      const lists = async () => await getUserLists(API.updateUser(userId));
+      const lists = async () =>
+        await getUserLists(API.updateUser(userId), authToken);
       const userLists = await lists();
       dispatch(initializeContentState(userLists));
     };
@@ -34,7 +37,9 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup/*" element={<Subscribe />} />
-          <Route path="/user-content/*" element={<UserContent />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/user-content/*" element={<UserContent />} />
+          </Route>
           <Route path="*" element={<p>Page not found.</p>} />
         </Routes>
       </Layout>

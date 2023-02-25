@@ -61,12 +61,13 @@ export const updateUserWishCities = async (
   }
 };
 
-export const getUserLists = async (apiAddress: string) => {
+export const getUserLists = async (apiAddress: string, authToken: string) => {
   try {
     const fetchData = await fetch(apiAddress, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${authToken}`,
       },
     });
     const result = await fetchData.json();

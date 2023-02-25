@@ -52,7 +52,6 @@ export const createUser = async (
 export const loginUser = async (req: Request, res: Response): Promise<void> => {
   // CHECK IF USER EXISTS
   const user = await User.findOne({ email: req.body.email });
-  console.log("backend login user data -->", user);
   // AUTHENTICATE USER
   if (user) {
     try {
