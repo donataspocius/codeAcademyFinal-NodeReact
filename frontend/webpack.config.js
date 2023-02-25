@@ -29,8 +29,10 @@ module.exports = {
         use: cssLoaders,
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i, // (1)
-        use: "url-loader",
+        test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
+        type: "asset/resource",
+        // test: /\.(png|jpe?g|gif|svg)$/i, // (1)
+        // use: "url-loader",
       },
       {
         test: /\.tsx?$/,
@@ -38,6 +40,9 @@ module.exports = {
         loader: "ts-loader",
       },
     ],
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
   },
   mode: "production",
 };
