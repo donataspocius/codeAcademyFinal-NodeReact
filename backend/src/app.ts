@@ -37,17 +37,17 @@ app.post("/auth/signup", createUser);
 app.post("/auth/login", loginUser);
 
 // --- USER ENPOINTS
-// GET user data FOR DEVELOPMENT ONLY
+// GET user data
 app.get("/user/:userId", authenticateToken, getUserLists);
+
+// UPDATE user visited/wish lists
+app.put("/user/:userId", updateUserData);
 
 // GET user visited cities data
 app.get("/user/visitedCities/:userId", getUserVisitedCities);
 
 // GET user wish cities data
 app.get("/user/wishCities/:userId", getUserWishCities);
-
-// UPDATE user visited/wish lists
-app.put("/user/:userId", updateUserData);
 
 // --- CONTENT ENDPOINTS
 // GET all country cities data --> HOME page initial load
