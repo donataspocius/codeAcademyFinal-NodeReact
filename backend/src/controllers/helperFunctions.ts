@@ -1,5 +1,5 @@
 import { API_SECRET, API_URL } from "../constants";
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
 
 export const getCitiesIdList = async (
   countryName: string
