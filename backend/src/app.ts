@@ -30,10 +30,6 @@ app.use(cors(corsOptions));
 
 // ENDPOINTS
 
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "../../frontend/build/index.html"));
-});
-
 // --- LOGIN ENDPOINTS
 // create new user in database (MongoDB: users)
 app.post("/auth/signup", createUser);
