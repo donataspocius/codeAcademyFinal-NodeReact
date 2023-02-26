@@ -16,7 +16,6 @@ import {
   getUserVisitedCities,
   getUserWishCities,
 } from "./controllers/user.controller";
-import path = require("path");
 
 dotenv.config();
 
