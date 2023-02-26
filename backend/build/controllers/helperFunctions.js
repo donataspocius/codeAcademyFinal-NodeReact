@@ -8,9 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getApiData = exports.getCityData = exports.getCitiesIdList = void 0;
 const constants_1 = require("../constants");
+const node_fetch_1 = __importDefault(require("node-fetch"));
 const getCitiesIdList = (countryName) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // fetching data
@@ -69,7 +73,9 @@ const getCityData = (id) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getCityData = getCityData;
 const getApiData = (idOrName) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let response = yield fetch(constants_1.API_URL.getData(idOrName), {
+        console.log("API_URL.getData(idOrName) -->", constants_1.API_URL.getData(idOrName));
+        console.log("headers API_SECRET -->", constants_1.API_SECRET);
+        let response = yield (0, node_fetch_1.default)(constants_1.API_URL.getData(idOrName), {
             method: "GET",
             headers: {
                 Authorization: "Basic " + constants_1.API_SECRET,
