@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import corsOptions from "./config/corsOptions";
 import dotenv from "dotenv";
 import { MONGODB_URI } from "./models/envConfig"; // importing string URI set for TS
 import { authenticateToken } from "./middlewares/auth.middlewares";
@@ -23,7 +24,7 @@ const PORT = process.env.PORT || 7000;
 
 // MIDDLEWARES
 app.use(express.json()); // use JSON
-app.use(cors());
+app.use(cors(corsOptions));
 
 // ENDPOINTS
 
