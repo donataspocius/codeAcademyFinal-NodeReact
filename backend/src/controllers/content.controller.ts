@@ -3,7 +3,7 @@ import {
   getCitiesIdList,
   getCityData,
   getApiData,
-} from "./helperFunctions.cjs";
+} from "./helperFunctions.mjs";
 
 export const getCitiesList = async (
   req: Request,

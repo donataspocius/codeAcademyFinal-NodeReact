@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import User from "../models/user.model";
-import { getCityData } from "./helperFunctions.cjs";
+import { getCityData } from "./helperFunctions.mjs";
 
 export const getUserVisitedCities = async (
   req: Request,
