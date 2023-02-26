@@ -84,8 +84,6 @@ export const getCityData = async (
 
 export const getApiData = async (idOrName: string) => {
   try {
-    console.log("API_URL.getData(idOrName) -->", API_URL.getData(idOrName));
-    console.log("headers API_SECRET -->", API_SECRET);
     let response = await fetch(API_URL.getData(idOrName), {
       method: "GET",
       headers: {

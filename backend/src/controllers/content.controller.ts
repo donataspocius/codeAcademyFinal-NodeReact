@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getCitiesIdList, getCityData, getApiData } from "./helperFunctions.js";
+import { getCitiesIdList, getCityData, getApiData } from "./helperFunctions";
 
 export const getCitiesList = async (
   req: Request,

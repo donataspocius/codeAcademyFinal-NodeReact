@@ -5,7 +5,7 @@ import Button from "../../components/Button/Button";
 import { getToken } from "../../utils/functions";
 import { API } from "../../constants";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { updateAuthToken, updateUserId } from "../../redux/auth/authSlice";
 
 const Login = () => {
@@ -55,6 +55,13 @@ const Login = () => {
           onChange={onChange}
         />
         <Button type="submit">Sign In</Button>
+
+        <h5>
+          Don't have an account yet?{" "}
+          <Link className={styles.Link} to="/signup/user-info">
+            Sign up!
+          </Link>
+        </h5>
         {!inputCorrect && <p>Please check login details.</p>}
       </form>
     </div>

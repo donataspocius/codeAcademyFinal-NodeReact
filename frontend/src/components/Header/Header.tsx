@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
-import logo from "../../imgs/Go.svg";
+import logo from "../../imgs/ar.svg";
 import Button from "../Button/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { updateAuthToken, updateUserId } from "../../redux/auth/authSlice";

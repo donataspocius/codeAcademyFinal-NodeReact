@@ -10,14 +10,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCountryData = exports.getCitiesList = void 0;
-const helperFunctions_1 = require("./helperFunctions");
+const helperFunctions_js_1 = require("./helperFunctions.js");
 const getCitiesList = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const country = req.params.country;
-        const cityIdsList = yield (0, helperFunctions_1.getCitiesIdList)(country); // getting every city ID of the country
+        const cityIdsList = yield (0, helperFunctions_js_1.getCitiesIdList)(country); // getting every city ID of the country
         // fetching data by city ID
         const cityData = yield Promise.all(cityIdsList === null || cityIdsList === void 0 ? void 0 : cityIdsList.map((id) => __awaiter(void 0, void 0, void 0, function* () {
-            const cityDataHere = yield (0, helperFunctions_1.getCityData)(String(id));
+            const cityDataHere = yield (0, helperFunctions_js_1.getCityData)(String(id));
             return cityDataHere;
         })));
         res.status(200).json(cityData);
@@ -33,7 +33,7 @@ exports.getCitiesList = getCitiesList;
 const getCountryData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const country = req.params.country;
-        const apiData = yield (0, helperFunctions_1.getApiData)(country);
+        const apiData = yield (0, helperFunctions_js_1.getApiData)(country);
         res.status(200).json({ message: "success", apiData });
     }
     catch (error) {

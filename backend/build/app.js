@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const cors_1 = __importDefault(require("cors"));
-const corsOptions_1 = __importDefault(require("./config/corsOptions"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const envConfig_1 = require("./models/envConfig"); // importing string URI set for TS
 const auth_middlewares_1 = require("./middlewares/auth.middlewares");
@@ -18,8 +17,8 @@ const app = (0, express_1.default)();
 const PORT = process.env.PORT || 7000;
 // MIDDLEWARES
 app.use(express_1.default.json()); // use JSON
-app.use((0, cors_1.default)(corsOptions_1.default));
-// app.use(cors());
+// app.use(cors(corsOptions));
+app.use((0, cors_1.default)());
 // ENDPOINTS
 // --- LOGIN ENDPOINTS
 // create new user in database (MongoDB: users)

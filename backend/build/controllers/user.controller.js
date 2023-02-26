@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUserLists = exports.updateUserData = exports.getUserWishCities = exports.getUserVisitedCities = void 0;
 const user_model_1 = __importDefault(require("../models/user.model"));
-const helperFunctions_1 = require("./helperFunctions");
+const helperFunctions_js_1 = require("./helperFunctions.js");
 const getUserVisitedCities = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.userId;
     try {
@@ -27,7 +27,7 @@ const getUserVisitedCities = (req, res) => __awaiter(void 0, void 0, void 0, fun
         }
         const userVisitedCitiesList = user === null || user === void 0 ? void 0 : user.visitedCities;
         const userVisitedCitiesData = yield Promise.all(userVisitedCitiesList === null || userVisitedCitiesList === void 0 ? void 0 : userVisitedCitiesList.map((id) => __awaiter(void 0, void 0, void 0, function* () {
-            const userCityData = yield (0, helperFunctions_1.getCityData)(String(id));
+            const userCityData = yield (0, helperFunctions_js_1.getCityData)(String(id));
             return userCityData;
         })));
         res.status(200).json(userVisitedCitiesData);
@@ -49,7 +49,7 @@ const getUserWishCities = (req, res) => __awaiter(void 0, void 0, void 0, functi
         }
         const userWishCitiesList = user === null || user === void 0 ? void 0 : user.wishCities;
         const userWishCitiesData = yield Promise.all(userWishCitiesList === null || userWishCitiesList === void 0 ? void 0 : userWishCitiesList.map((id) => __awaiter(void 0, void 0, void 0, function* () {
-            const userCityData = yield (0, helperFunctions_1.getCityData)(String(id));
+            const userCityData = yield (0, helperFunctions_js_1.getCityData)(String(id));
             return userCityData;
         })));
         res.status(200).json(userWishCitiesData);
