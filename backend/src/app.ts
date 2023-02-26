@@ -16,6 +16,7 @@ import {
   getUserVisitedCities,
   getUserWishCities,
 } from "./controllers/user.controller";
+import path = require("path");
 
 dotenv.config();
 
@@ -28,6 +29,10 @@ app.use(cors(corsOptions));
 // app.use(cors());
 
 // ENDPOINTS
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "../../frontend/build/index.html"));
+});
 
 // --- LOGIN ENDPOINTS
 // create new user in database (MongoDB: users)
