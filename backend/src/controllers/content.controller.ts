@@ -1,9 +1,5 @@
 import { Request, Response } from "express";
-import {
-  getCitiesIdList,
-  getCityData,
-  getApiData,
-} from "./helperFunctions.mjs";
+import { getCitiesIdList, getCityData, getApiData } from "./helperFunctions.js";
 
 export const getCitiesList = async (
   req: Request,
