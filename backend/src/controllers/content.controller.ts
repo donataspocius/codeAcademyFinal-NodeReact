@@ -33,6 +33,7 @@ export const getCountryData = async (
   try {
     const country = req.params.country;
     const apiData = await getApiData(country);
+    console.log("received apiData from getCountryData", apiData);
 
     res.status(200).json({ message: "success", apiData });
   } catch (error) {

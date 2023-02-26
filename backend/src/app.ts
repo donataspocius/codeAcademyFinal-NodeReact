@@ -28,6 +28,8 @@ app.use(cors(corsOptions));
 
 // ENDPOINTS
 
+app.get("/");
+
 // --- LOGIN ENDPOINTS
 // create new user in database (MongoDB: users)
 app.post("/auth/signup", createUser);
