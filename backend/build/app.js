@@ -21,7 +21,6 @@ app.use(express_1.default.json()); // use JSON
 app.use((0, cors_1.default)(corsOptions_1.default));
 // app.use(cors());
 // ENDPOINTS
-app.get("/index.html");
 // --- LOGIN ENDPOINTS
 // create new user in database (MongoDB: users)
 app.post("/auth/signup", auth_controller_1.createUser);
