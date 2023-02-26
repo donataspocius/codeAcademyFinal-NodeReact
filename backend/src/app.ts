@@ -1,7 +1,7 @@
 import express, { Application, Request, Response } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-// import corsOptions from "./config/corsOptions";
+import corsOptions from "./config/corsOptions";
 import dotenv from "dotenv";
 import { MONGODB_URI } from "./models/envConfig"; // importing string URI set for TS
 import { authenticateToken } from "./middlewares/auth.middlewares";
@@ -24,8 +24,8 @@ const PORT = process.env.PORT || 7000;
 
 // MIDDLEWARES
 app.use(express.json()); // use JSON
-// app.use(cors(corsOptions));
-app.use(cors());
+app.use(cors(corsOptions));
+// app.use(cors());
 
 // ENDPOINTS
 
@@ -41,7 +41,6 @@ app.post("/auth/login", loginUser);
 // --- USER ENPOINTS
 // GET user data FOR DEVELOPMENT ONLY
 app.get("/user/:userId", authenticateToken, getUserLists);
-// app.get("/user/:userId", authenticateToken, getUserData);
 
 // GET user visited cities data
 app.get("/user/visitedCities/:userId", getUserVisitedCities);
