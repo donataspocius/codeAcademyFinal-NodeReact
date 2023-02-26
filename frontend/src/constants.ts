@@ -1,5 +1,5 @@
-const API_DOMAIN = "http://localhost:7000";
-// const API_DOMAIN = "https://donatas-travel-app-api.onrender.com";
+// const API_DOMAIN = "http://localhost:7000";
+const API_DOMAIN = "https://donatas-travel-app-api.onrender.com";
 
 export const API = {
   signup: `${API_DOMAIN}/auth/signup`,
