@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const cors_1 = __importDefault(require("cors"));
+const corsOptions_1 = __importDefault(require("./config/corsOptions"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const envConfig_1 = require("./models/envConfig"); // importing string URI set for TS
 const auth_middlewares_1 = require("./middlewares/auth.middlewares");
@@ -17,8 +18,10 @@ const app = (0, express_1.default)();
 const PORT = process.env.PORT || 7000;
 // MIDDLEWARES
 app.use(express_1.default.json()); // use JSON
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)(corsOptions_1.default));
+// app.use(cors());
 // ENDPOINTS
+app.get("/index.html");
 // --- LOGIN ENDPOINTS
 // create new user in database (MongoDB: users)
 app.post("/auth/signup", auth_controller_1.createUser);
@@ -27,7 +30,6 @@ app.post("/auth/login", auth_controller_1.loginUser);
 // --- USER ENPOINTS
 // GET user data FOR DEVELOPMENT ONLY
 app.get("/user/:userId", auth_middlewares_1.authenticateToken, user_controller_1.getUserLists);
-// app.get("/user/:userId", authenticateToken, getUserData);
 // GET user visited cities data
 app.get("/user/visitedCities/:userId", user_controller_1.getUserVisitedCities);
 // GET user wish cities data
