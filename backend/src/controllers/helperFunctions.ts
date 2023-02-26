@@ -1,4 +1,5 @@
 import { API_SECRET, API_URL } from "../constants";
+import fetch from "node-fetch";
 
 export const getCitiesIdList = async (
   countryName: string
@@ -91,7 +92,7 @@ export const getApiData = async (idOrName: string) => {
         Authorization: "Basic " + API_SECRET,
       },
     });
-    let apiData = await response.json();
+    let apiData: any = await response.json();
     return apiData;
   } catch (error) {
     console.log("error fetching API data (getApiData()): ", error);
