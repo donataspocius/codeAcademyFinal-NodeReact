@@ -13,6 +13,7 @@ const auth_middlewares_1 = require("./middlewares/auth.middlewares");
 const auth_controller_1 = require("./controllers/auth.controller");
 const content_controller_1 = require("./controllers/content.controller");
 const user_controller_1 = require("./controllers/user.controller");
+const path = require("path");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 7000;
@@ -21,6 +22,9 @@ app.use(express_1.default.json()); // use JSON
 app.use((0, cors_1.default)(corsOptions_1.default));
 // app.use(cors());
 // ENDPOINTS
+app.get("/*", function (req, res) {
+    res.sendFile(path.join(__dirname, "../../frontend/build/index.html"));
+});
 // --- LOGIN ENDPOINTS
 // create new user in database (MongoDB: users)
 app.post("/auth/signup", auth_controller_1.createUser);
